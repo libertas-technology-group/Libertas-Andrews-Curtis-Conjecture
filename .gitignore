@@ -1,0 +1,26 @@
+# Lean build artifacts
+lean/.lake/
+lake-manifest.json.bak
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# Sphinx
+docs/_build/
+docs/__pycache__/
+
+# Editors and OS
+.DS_Store
+*.swp
+.idea/
+.vscode/
+
+# Local logs
+*.log
+
+.lake/

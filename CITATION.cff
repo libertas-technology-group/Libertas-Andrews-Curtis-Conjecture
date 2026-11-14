@@ -1,0 +1,45 @@
+cff-version: 1.2.0
+message: "If you use this corpus, cite the project as below."
+title: "Libertas Andrews–Curtis Conjecture"
+abstract: >-
+  A machine-checked Lean 4 corpus for the Andrews–Curtis conjecture: 81 modules,
+  1,553 declarations and eight registered theorems, including a kernel-checked
+  reduction of the conjecture to a single open input. Produced in three days by
+  the Libertas Superintelligence platform and its proprietary Cognitive World
+  Models, which construct explicit world models for the specific problem or
+  domain being addressed; in this run the world model attempted to build a map
+  of the path to a solution and recorded each reasoning step from requirement to
+  compiled theorem. The corpus is one stress test of the platform; Libertas
+  Technology Group focuses on applied and industrial applications.
+type: software
+authors:
+  - family-names: Ndikum
+    given-names: Philip
+  - family-names: Ndikum
+    given-names: Serge
+date-released: "2026-11-13"
+version: "1.0.8"
+license: Apache-2.0
+repository-code: "https://github.com/libertas-technology-group/Libertas-Andrews-Curtis-Conjecture"
+url: "https://github.com/libertas-technology-group/Libertas-Andrews-Curtis-Conjecture"
+keywords:
+  - Andrews–Curtis conjecture
+  - stable Andrews–Curtis conjecture
+  - Lean 4
+  - formal proof
+  - cognitive world models
+  - white-box superintelligence
+  - world models
+preferred-citation:
+  type: generic
+  title: "Libertas Andrews–Curtis Conjecture"
+  year: 2026
+  authors:
+    - family-names: Ndikum
+      given-names: Philip
+    - family-names: Ndikum
+      given-names: Serge
+  publisher:
+    name: "Libertas Technology Group Limited"
+  url: "https://github.com/libertas-technology-group/Libertas-Andrews-Curtis-Conjecture"
+  notes: "Machine-checked Lean 4 corpus produced in three days by the Libertas Superintelligence system and its Cognitive World Model."

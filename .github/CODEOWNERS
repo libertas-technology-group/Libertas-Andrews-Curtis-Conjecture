@@ -1,0 +1,5 @@
+# One owner per area. The owner of a change is never its verifier.
+/lean/                @libertas-technology-group/lean-maintainers
+/docs/                @libertas-technology-group/docs-maintainers
+/scripts/             @libertas-technology-group/build-maintainers
+/.github/             @libertas-technology-group/build-maintainers

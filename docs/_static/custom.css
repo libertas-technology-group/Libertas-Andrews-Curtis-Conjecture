@@ -1,0 +1,122 @@
+/* ==========================================================================
+   Documentation stylesheet
+
+   The site uses the stock Sphinx theme. This file carries two house
+   conventions: a centred home-page tagline and a bordered, centred table style.
+   ========================================================================== */
+
+/* -- Typography ----------------------------------------------------------- */
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  letter-spacing: -0.01em;
+}
+
+/* Body text is flush left and is never hyphenated. */
+div.body p,
+div.body li,
+div.body dd,
+div.body dt,
+div.body td,
+div.body th,
+article p,
+article li {
+  text-align: left;
+  hyphens: none;
+}
+
+/* -- Home-page tagline ---------------------------------------------------- */
+
+.home-tagline {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* -- Tables --------------------------------------------------------------- */
+
+table.docutils {
+  width: 100%;
+  margin: 1.25rem auto;
+  border-collapse: collapse;
+  border: 1px solid #e4e4df;
+  border-radius: 6px;
+  overflow: hidden;
+  font-size: 0.92rem;
+}
+
+table.docutils th {
+  padding: 0.55rem 0.7rem;
+  text-align: left;
+  font-weight: 600;
+  background: #f6f6f3;
+  border-bottom: 2px solid #e4e4df;
+}
+
+table.docutils td {
+  padding: 0.5rem 0.7rem;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid #ecece8;
+  overflow-wrap: anywhere;
+}
+
+table.docutils td code.literal {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+table.docutils tr:last-child td {
+  border-bottom: none;
+}
+
+table.docutils caption {
+  caption-side: top;
+  text-align: left;
+  font-size: 0.85rem;
+  color: #666666;
+}
+
+/* -- Code and notices ----------------------------------------------------- */
+
+pre {
+  border-radius: 6px;
+}
+
+code.literal {
+  border-radius: 4px;
+  padding: 0.08em 0.28em;
+}
+
+.admonition {
+  border-radius: 6px;
+}
+
+.admonition.legal-notice {
+  margin-top: 3rem;
+  font-size: 0.82rem;
+  background: #f6f6f3;
+  border-left: 3px solid #c9c9c2;
+}
+
+.admonition.legal-notice p {
+  color: #555555;
+}
+
+/* -- Narrow screens ------------------------------------------------------- */
+
+@media (max-width: 640px) {
+  table.docutils {
+    display: block;
+    overflow-x: auto;
+    white-space: normal;
+  }
+}

@@ -1,0 +1,11 @@
+name = "ac-challenge"
+version = "0.2.0"
+defaultTargets = ["ACChallenge"]
+
+[[require]]
+name = "AcCorpus"
+path = "lean"
+
+[[lean_lib]]
+name = "ACChallenge"
+globs = ["Challenge", "Solution"]

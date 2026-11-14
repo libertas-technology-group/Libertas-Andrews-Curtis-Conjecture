@@ -1,0 +1,19 @@
+{
+  "challenge_module": "Challenge",
+  "solution_module": "Solution",
+  "theorem_names": [
+    "ACChallenge.relationSubgroup_eq_top",
+    "ACChallenge.expSpan_eq_top_of_presents",
+    "ACChallenge.expMatrix_det_step",
+    "ACChallenge.reachable_powFamily",
+    "ACChallenge.expMatrix_conj",
+    "ACChallenge.no_strictly_decreasing_measure",
+    "ACChallenge.stableStep_expSpan_top",
+    "ACChallenge.expVec_conj"
+  ],
+  "permitted_axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ]
+}

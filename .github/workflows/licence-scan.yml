@@ -1,0 +1,26 @@
+name: licence-scan
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Refuse vendored files without a notice
+        run: |
+          missing=0
+          for f in $(git ls-files '*.lean'); do
+            if grep -qi 'vendored\|copied from\|adapted from' "$f"; then
+              if ! grep -qi 'licen' "$f"; then
+                echo "MISSING NOTICE: $f"; missing=1
+              fi
+            fi
+          done
+          exit $missing

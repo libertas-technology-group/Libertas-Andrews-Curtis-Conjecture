@@ -1,0 +1,16 @@
+name = "AcCorpus"
+version = "0.1.0"
+defaultTargets = ["AcCorpus", "NielsenCycLenConj", "NielsenRotationNormalForm", "NielsenMeasure12", "AcTailExpVec", "AcTailGeneral", "AcTailClass"]
+
+[leanOptions]
+autoImplicit = false
+warningAsError = true
+
+[[require]]
+name = "mathlib"
+git = "https://github.com/leanprover-community/mathlib4.git"
+rev = "5e932f97dd25535344f80f9dd8da3aab83df0fe6"
+
+[[lean_lib]]
+name = "AcCorpus"
+globs = ["AC", "AcMove", "AcInvariant", "AcProof", "AcCounterexample", "AcBase", "AcEuclid", "AcEuclidGeneral", "Ak3", "Ak3Separation", "Ak3Invariant", "AcStableCounterexample", "AcStableInvariant", "AcStableInvariant2", "AcStableProjection", "AcStableTrivial", "AcRankReduction", "AcQuotient", "AcInduction", "AcFinal", "BranchB", "BranchC", "BranchD", "BranchC3", "BranchC4", "BranchD2", "BranchD3", "BranchD4", "AcNielsenDefs", "AcTailDefs", "AcNielsen", "AcNielsenCounterexample", "AcTail", "AcMagnusCounterexample", "AcStableProjectionCounterexample", "AcStableMountain", "NielsenCycLenConj", "NielsenRotationNormalForm", "NielsenMeasure12", "AcTailExpVec", "AcTailGeneral", "AcTailClass", "AcStableMountainCounterexample", "NielsenSevenStage", "NielsenWitnessTrivial", "NielsenMeasure12Cover", "NielsenSliceBridge", "NielsenOddness", "NielsenOddnessBridge", "NielsenMeasure10Certificates", "NielsenMeasure10Consumer", "NielsenLowMeasureFinal", "NielsenPivotP1", "AcStallings", "Ak3OrbitSeparation", "AcStallingsTailArea", "AcStableWitness", "AcStableMountainRankOne", "AcStallingsInverse", "AcStallingsTailAreaCounterexample", "AcStallingsExponentMeasure", "AcStallingsExponentCounterexample", "AcStallingsWordMeasure", "AcBS23BrittonOracle", "AcBS23FoxDeterminant", "AcBS23NonmetabelianQuotient", "AcBS23SubgroupIndex", "AcBS23HNN", "AcBS23Conjugacy", "AcA8Reachability", "AcA8PivotReduction", "AcA8TailMinimal", "AcA8CyclicBridge", "AcA8Assembly", "AcRelationModuleCollapse", "AcExpMatrixLaw", "AcDetourWidth", "AcWindingCollapse", "AcStabilityTransport", "AcPowFamily", "AcRightFamily"]

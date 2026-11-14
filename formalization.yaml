@@ -1,0 +1,162 @@
+version: '0.4'
+project:
+  name: 'Libertas — Andrews–Curtis Conjecture: universal laws and a kernel-checked reduction'
+  description: 'A Lean 4 (Mathlib) corpus on the Andrews–Curtis conjecture: a kernel-checked
+    reduction of the conjecture to abelian-terminal presentations, eleven universal laws
+    over the space of balanced presentations, and infinite family closures. The registered
+    statements are universal: the relation-subgroup collapse — a balanced presentation
+    whose presented group is one-element has the whole free group as the normal closure
+    of its relators — the exponent-span law, the signed determinant law under the three
+    moves, the power family closure for every exponent, the absence of a strictly
+    decreasing measure at every rank, and span stability under stable moves, with
+    vocabulary lemmas recording that conjugation fixes the exponent data. Solution.lean
+    carries no sorry and no user axiom; one command reproduces every count. Produced in a
+    three-day autonomous stress test for approximately $50 in compute — demonstrating the
+    learning efficiency of the Libertas Superintelligence platform and Cognitive World
+    Models of Libertas Technology Group across biotechnology, cybersecurity, engineering
+    and quantitative finance.'
+  authors:
+  - Philip Ndikum
+  - Serge Ndikum
+  - Libertas Technology Group Limited
+  license: Apache-2.0
+  responsible_maintainers:
+  - Philip Ndikum (maintainers@libertastechgroup.com)
+repository:
+  url: https://github.com/libertas-technology-group/Libertas-Andrews-Curtis-Conjecture
+  project_path: .
+classification:
+  arxiv:
+  - math.GR
+  msc2020:
+  - 20F05
+  - 20E05
+  - 57M20
+sources:
+- title: Free Groups and Handlebodies
+  authors:
+  - J. J. Andrews
+  - M. L. Curtis
+  year: 1965
+  venue: Proceedings of the American Mathematical Society 16, 192-195
+  identifier: 10.1090/s0002-9939-1965-0173241-8
+  relationship: background
+- title: The Andrews–Curtis conjecture and black box groups
+  authors:
+  - A. V. Borovik
+  - E. I. Khukhro
+  - A. G. Myasnikov
+  year: 2003
+  venue: International Journal of Algebra and Computation 13(4)
+  identifier: 10.1142/s0218196703001468
+  relationship: background
+- title: On Conjectures of Andrews and Curtis
+  authors:
+  - S. V. Ivanov
+  year: 2018
+  venue: Proceedings of the American Mathematical Society 146
+  identifier: 10.1090/proc/13710
+  relationship: background
+- title: Stable Andrews–Curtis trivialization of AK(3) revisited. A case study using automated deduction
+  authors:
+  - A. Lisitsa
+  year: 2025
+  venue: arXiv:2501.18601
+  identifier: 10.48550/arXiv.2501.18601
+  relationship: background
+- title: 'What makes math problems hard for reinforcement learning: a case study'
+  authors:
+  - A. Shehper
+  - A. M. Medina-Mardones
+  - L. Fagan
+  - B. Lewandowski
+  - A. Gruen
+  - Y. Qiu
+  - P. Kucharski
+  - Z. Wang
+  - S. Gukov
+  year: 2025
+  venue: arXiv:2408.15332
+  identifier: 10.48550/arXiv.2408.15332
+  relationship: background
+- title: 'World models: Enabling the next AI revolution'
+  authors:
+  - Y. LeCun
+  - P. Fung
+  year: 2026
+  venue: AI Magazine 47(4)
+  identifier: 10.1002/aaai.70110
+  relationship: background
+- title: Balanced finite presentations of the trivial group
+  authors:
+  - B. Lishak
+  year: 2017
+  venue: International Journal of Algebra and Computation
+  identifier: 10.1142/S1793525317500182
+  relationship: background
+- title: On Andrews–Curtis conjectures for soluble groups
+  authors:
+  - L. Guyot
+  year: 2018
+  venue: International Journal of Algebra and Computation 28
+  identifier: 10.1142/S0218196718500054
+  relationship: background
+related_formalizations: []
+automation:
+  methods:
+  - method: agent
+    model: Libertas Superintelligence, proprietary Cognitive World Models, which construct explicit world models for the specific problem or domain being addressed
+    role: 'The corpus is one stress test of the Libertas Superintelligence platform. Operating
+      as a fully white-box system, the platform constructs explicit world models for the
+      specific problem or domain being addressed; in this run the world model attempted to
+      build a map of the path to a solution. It maps the families of approaches, narrows them
+      down systematically, and carries each one end-to-end, from statement to kernel-checked
+      declaration. A route that closes becomes a compiled theorem; a route that cannot close
+      becomes a pruning theorem with a witness. Humans set the requirements, reviewed every
+      artifact, and approved the release. Libertas Technology Group builds the platform for
+      applied and industrial use in regulated sectors: biotechnology, cybersecurity,
+      engineering and quantitative finance.'
+status:
+  scope: 'Formalized: the conjecture statement, the reduction to the A8 input, the universal
+    obstruction laws listed in the README, and two infinite family closures. Not formalized:
+    the conjecture itself. Two target-level inputs are stated as open definitions and carry
+    no proof.'
+  sorry_count: 9
+  sorry_in_definitions: 0
+  axioms:
+  - propext
+  - Classical.choice
+  - Quot.sound
+fidelity:
+  divergences: 'The challenge module restates its vocabulary rather than importing the corpus,
+    because the registry caps challenge-module imports. The statements are unchanged. The
+    nine `sorry` terms counted in `status.sorry_count` are the statement placeholders in `Challenge.lean`:
+    eight registered theorems and one vocabulary lemma. `Solution.lean` carries no `sorry`
+    and no user axiom.'
+review:
+  status: self-assessed
+alignment:
+- theorem: ACChallenge.relationSubgroup_eq_top
+  informal: A balanced presentation whose presented group is one-element has the whole free
+    group as the normal closure of its relators.
+- theorem: ACChallenge.expSpan_eq_top_of_presents
+  informal: On that class the Z-span of the relator exponent vectors is the whole lattice
+    of exponent vectors.
+- theorem: ACChallenge.expMatrix_det_step
+  informal: Under each of the three elementary moves the determinant of the exponent matrix
+    changes by at most a sign.
+- theorem: ACChallenge.reachable_powFamily
+  informal: For every natural number n the pair (x times y to the n, y) reaches the standard
+    pair by official moves.
+- theorem: ACChallenge.expVec_conj
+  informal: Conjugating a word leaves its exponent vector unchanged.
+- theorem: ACChallenge.expMatrix_conj
+  informal: Conjugating one relator leaves the exponent matrix unchanged.
+- theorem: ACChallenge.no_strictly_decreasing_measure
+  informal: At every positive rank no natural-valued function decreases on every official
+    step.
+- theorem: ACChallenge.stableStep_expSpan_top
+  informal: Inserting or deleting an isolated generator and relator pair preserves whether
+    the exponent span is the whole lattice, at every rank.
+acknowledgements: The corpus restates, with attribution, material from public repositories
+  under the MIT and Apache 2.0 licences; the relevant notices travel with the files.
