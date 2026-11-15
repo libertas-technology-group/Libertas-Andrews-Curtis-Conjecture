@@ -1,7 +1,11 @@
-import AC
-import AcMove
-import BranchD
-import Mathlib.Tactic.Group
+module
+
+public import AC
+public import AcMove
+public import BranchD
+public import Mathlib.Tactic.Group
+
+@[expose] public section
 
 /-!
 # Branch D2 — the stable projection test
@@ -210,40 +214,45 @@ abbrev s12 : Relators 2 := tup x2 y2
 theorem candidate_ordinary_chain : Reachable s0 s12 := by
   have h1 : Step s0 s1 := by
     have hs := step_conj_zero A B (x2⁻¹)
-    convert hs using 2 <;> (simp [A]; group)
+    convert hs using 2 <;> (first | rfl | (simp [A]; group) | (simp [A, pow_two]; group) | (simp [A]; norm_num; group) | simp_all)
   have h2 : Step s1 s2 := by
     have hs := step_mul_one_zero (x2⁻¹ * y2⁻¹) B
-    convert hs using 2 <;> (simp [B]; group)
+    have hB : B * (x2⁻¹ * y2⁻¹) = y2⁻¹ * y2⁻¹ * x2⁻¹ * x2⁻¹ * y2 := by
+      show (y2⁻¹ * y2⁻¹ * x2⁻¹ * x2⁻¹ * y2 * y2 * x2) * (x2⁻¹ * y2⁻¹)
+        = y2⁻¹ * y2⁻¹ * x2⁻¹ * x2⁻¹ * y2
+      group
+    rw [hB] at hs
+    exact hs
   have h3 : Step s2 s3 := by
     have hs := step_conj_one (x2⁻¹ * y2⁻¹) (y2⁻¹ * y2⁻¹ * x2⁻¹ * x2⁻¹ * y2) y2
-    convert hs using 2 <;> group
+    convert hs using 2 <;> (first | rfl | group | (rw [pow_two]; group) | (simp [pow_two]; group) | norm_num | simp_all)
   have h4 : Step s3 s4 := by
     have hs := step_inv_one (x2⁻¹ * y2⁻¹) (y2⁻¹ * x2⁻¹ * x2⁻¹)
-    convert hs using 2 <;> group
+    convert hs using 2 <;> (first | rfl | group | (rw [pow_two]; group) | (simp [pow_two]; group) | norm_num | simp_all)
   have h5 : Step s4 s5 := by
     have hs := step_conj_zero (x2⁻¹ * y2⁻¹) (x2 * x2 * y2) x2
-    convert hs using 2 <;> group
+    convert hs using 2 <;> (first | rfl | group | (rw [pow_two]; group) | (simp [pow_two]; group) | norm_num | simp_all)
   have h6 : Step s5 s6 := by
     have hs := step_mul_one_zero (y2⁻¹ * x2⁻¹) (x2 * x2 * y2)
-    convert hs using 2 <;> group
+    convert hs using 2 <;> (first | rfl | group | (rw [pow_two]; group) | (simp [pow_two]; group) | norm_num | simp_all)
   have h7 : Step s6 s7 := by
     have hs := step_mul_zero_one (y2⁻¹ * x2⁻¹) x2
-    convert hs using 2 <;> group
+    convert hs using 2 <;> (first | rfl | group | (rw [pow_two]; group) | (simp [pow_two]; group) | norm_num | simp_all)
   have h8 : Step s7 s8 := by
     have hs := step_mul_one_zero (y2⁻¹) x2
-    convert hs using 2 <;> group
+    convert hs using 2 <;> (first | rfl | group | (rw [pow_two]; group) | (simp [pow_two]; group) | norm_num | simp_all)
   have h9 : Step s8 s9 := by
     have hs := step_inv_one (y2⁻¹) (x2 * y2⁻¹)
-    convert hs using 2 <;> group
+    convert hs using 2 <;> (first | rfl | group | (rw [pow_two]; group) | (simp [pow_two]; group) | norm_num | simp_all)
   have h10 : Step s9 s10 := by
     have hs := step_mul_zero_one (y2⁻¹) (y2 * x2⁻¹)
-    convert hs using 2 <;> group
+    convert hs using 2 <;> (first | rfl | group | (rw [pow_two]; group) | (simp [pow_two]; group) | norm_num | simp_all)
   have h11 : Step s10 s11 := by
     have hs := step_inv_zero (x2⁻¹) (y2 * x2⁻¹)
-    convert hs using 2 <;> group
+    convert hs using 2 <;> (first | rfl | group | (rw [pow_two]; group) | (simp [pow_two]; group) | norm_num | simp_all)
   have h12 : Step s11 s12 := by
     have hs := step_mul_one_zero x2 (y2 * x2⁻¹)
-    convert hs using 2 <;> group
+    convert hs using 2 <;> (first | rfl | group | (rw [pow_two]; group) | (simp [pow_two]; group) | norm_num | simp_all)
   exact Relation.ReflTransGen.tail
     (Relation.ReflTransGen.tail
       (Relation.ReflTransGen.tail

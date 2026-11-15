@@ -1,3 +1,5 @@
+module
+
 /-
   The abelianisation collapse, normal-closure half.
 
@@ -15,7 +17,9 @@
   Nothing below copies code from that repository.  The statement is restated in
   this corpus's own vocabulary and proved from this corpus's own definitions.
 -/
-import Ak3Invariant
+public import Ak3Invariant
+
+@[expose] public section
 
 namespace AC.RelationCollapse
 
@@ -28,12 +32,12 @@ the whole free group. The quotient by the normal closure is one-element, so
 every word lies in the normal closure. -/
 theorem relationSubgroup_eq_top {R : Relators n} (h : PresentsTrivialGroup R) :
     relationSubgroup R = ⊤ := by
-  haveI : (relationSubgroup R).Normal := by
+  have : (relationSubgroup R).Normal := by
     unfold relationSubgroup
     infer_instance
   rw [eq_top_iff]
   intro w _
-  haveI : Subsingleton (Word n ⧸ relationSubgroup R) := h
+  have : Subsingleton (Word n ⧸ relationSubgroup R) := h
   have h1 : (QuotientGroup.mk w : Word n ⧸ relationSubgroup R) = 1 :=
     Subsingleton.elim _ _
   exact (QuotientGroup.eq_one_iff w).mp h1

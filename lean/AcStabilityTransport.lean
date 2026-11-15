@@ -1,5 +1,9 @@
-import AC
-import AcInvariant
+module
+
+public import AC
+public import AcInvariant
+
+@[expose] public section
 
 /-!
 # Exponent-span transport across stable insertion
@@ -120,7 +124,7 @@ theorem expHom_map_succAbove (g : Fin (n + 1)) :
 theorem expVec_map_succAbove (g : Fin (n + 1)) (w : Word n) :
     expVec (FreeGroup.map (Fin.succAbove g) w) = tau g (expVec w) := by
   have h := DFunLike.congr_fun (expHom_map_succAbove g) w
-  simpa [expVec, tauMul, tauAdd] using h
+  exact congrArg Multiplicative.toAdd h
 
 /-- (a) The inserted relator has exponent vector the new basis vector. -/
 theorem expVec_stabilize_self (R : Relators n) (g i : Fin (n + 1)) :

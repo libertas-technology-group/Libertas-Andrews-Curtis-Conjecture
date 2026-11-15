@@ -1,3 +1,5 @@
+module
+
 /-
 # NielsenOddness — odd cyclic length at an abelian-terminal state
 
@@ -8,11 +10,13 @@ This discharges the oddness hypotheses of
 `AC.Nielsen.SliceBridge.low_of_slice_and_ten`.
 -/
 
-import AcNielsenDefs
-import AcProof
-import AcA8TailMinimal
-import NielsenSliceBridge
-import Mathlib.Tactic
+public import AcNielsenDefs
+public import AcProof
+public import AcA8TailMinimal
+public import NielsenSliceBridge
+public import Mathlib.Tactic
+
+@[expose] public section
 
 set_option autoImplicit false
 

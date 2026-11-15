@@ -1,7 +1,11 @@
-import AcStallingsTailArea
-import Ak3
-import AcProof
-import Mathlib.GroupTheory.FreeGroup.Reduce
+module
+
+public import AcStallingsTailArea
+public import Ak3
+public import AcProof
+public import Mathlib.GroupTheory.FreeGroup.Reduce
+
+@[expose] public section
 
 /-!
 # AcStallingsTailAreaCounterexample — the AK(3) no-descent theorem

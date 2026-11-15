@@ -1,5 +1,9 @@
-import AcNielsenDefs
-import AcProof
+module
+
+public import AcNielsenDefs
+public import AcProof
+
+@[expose] public section
 
 /-!
 # NielsenMeasure12 — the measure-12 both-long uniform slice

@@ -1,9 +1,13 @@
-import AC
-import AcMove
-import BranchD
-import Mathlib.GroupTheory.FreeGroup.Reduce
-import Mathlib.Tactic.Group
-import Mathlib.Tactic
+module
+
+public import AC
+public import AcMove
+public import BranchD
+public import Mathlib.GroupTheory.FreeGroup.Reduce
+public import Mathlib.Tactic.Group
+public import Mathlib.Tactic
+
+@[expose] public section
 
 /-!
 # Branch D3 — the full stable projection cohort
@@ -280,7 +284,7 @@ theorem lift_comp {α β γ : Type} [Group γ]
 theorem lift_const_one {α : Type} (w : FreeGroup α) :
     FreeGroup.lift (fun _ => (1 : FreeGroup (Fin 2))) w = 1 := by
   induction w using FreeGroup.induction_on with
-  | C1 => simp
+  | one => simp
   | of a => simp
   | inv_of a ih => simp [ih]
   | mul x y ihx ihy => simp [ihx, ihy]

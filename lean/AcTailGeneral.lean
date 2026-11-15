@@ -1,5 +1,9 @@
-import AcTailDefs
-import Mathlib.Tactic.Group
+module
+
+public import AcTailDefs
+public import Mathlib.Tactic.Group
+
+@[expose] public section
 
 /-!
 # AcTailGeneral — the exact tail of a product

@@ -1,4 +1,8 @@
-import AC
+module
+
+public import AC
+
+@[expose] public section
 
 /-!
 # The counterexample target for the Andrews–Curtis conjecture

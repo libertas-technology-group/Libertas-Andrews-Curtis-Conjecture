@@ -1,7 +1,11 @@
-import AC
-import AcBase
-import Mathlib.Data.Fin.SuccPred
-import Mathlib.GroupTheory.FreeGroup.Reduce
+module
+
+public import AC
+public import AcBase
+public import Mathlib.Data.Fin.SuccPred
+public import Mathlib.GroupTheory.FreeGroup.Reduce
+
+@[expose] public section
 
 /-!
 # Rank reduction for the pivot-reduced A9 interface
@@ -144,7 +148,7 @@ noncomputable def deleteIndex (i : Fin (n + 1)) (a : Fin (n + 1)) : Fin n :=
 lemma succAbove_deleteIndex {i : Fin (n + 1)} {a : Fin (n + 1)} (h : a ≠ i) :
     Fin.succAbove i (deleteIndex i a) = a := by
   unfold deleteIndex
-  rw [dif_neg h]
+  rw [dite_eq_right h]
   exact (Fin.exists_succAbove_eq h).choose_spec
 
 /-- On the image of `Fin.succAbove i` the deletion is its inverse. -/
@@ -250,7 +254,7 @@ lemma psi_phi (i : Fin (n + 1)) (x : Word n) : psi i (phi i x) = x := by
   have hgen : ∀ k : Fin n, (psi i).comp (phi i) (FreeGroup.of k) = FreeGroup.of k := by
     intro k
     simp only [MonoidHom.comp_apply, phi, FreeGroup.map.of, psi, FreeGroup.lift_apply_of]
-    rw [if_neg (Fin.succAbove_ne i k), deleteIndex_succAbove]
+    rw [ite_eq_right (Fin.succAbove_ne i k), deleteIndex_succAbove]
   calc psi i (phi i x) = FreeGroup.lift FreeGroup.of x :=
         FreeGroup.lift_unique (f := FreeGroup.of) ((psi i).comp (phi i)) hgen
     _ = x := FreeGroup.lift_of_apply x
@@ -263,8 +267,8 @@ theorem presentsTrivialGroup_reduceTuple {i : Fin (n + 1)} {S : Relators (n + 1)
   set M : Subgroup (Word (n + 1)) := Subgroup.normalClosure (Set.range S) with hM
   set N : Subgroup (Word n) := Subgroup.normalClosure (Set.range T) with hN
   have hsurj : Function.Surjective (psi i) := fun x => ⟨phi i x, psi_phi i x⟩
-  haveI hMnorm : M.Normal := by rw [hM]; infer_instance
-  haveI hmapnorm : (Subgroup.map (psi i) M).Normal := hMnorm.map (psi i) hsurj
+  have hMnorm : M.Normal := by rw [hM]; infer_instance
+  have hmapnorm : (Subgroup.map (psi i) M).Normal := hMnorm.map (psi i) hsurj
   have hMtop : M = ⊤ := by
     rw [hM]
     exact QuotientGroup.subsingleton_iff.mp hp

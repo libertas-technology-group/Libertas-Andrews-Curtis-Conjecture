@@ -1,3 +1,5 @@
+module
+
 /-
 # NielsenMeasure12Cover — the covering obligation for the measure-12 slice
 
@@ -58,11 +60,13 @@ No `sorry`, `admit`, `axiom`, or `native_decide` occurs in this file. The axiom
 record at the end reports the trusted base of the main theorem.
 -/
 
-import AcNielsenDefs
-import AcProof
-import NielsenRotationNormalForm
-import NielsenMeasure12
-import NielsenSevenStage
+public import AcNielsenDefs
+public import AcProof
+public import NielsenRotationNormalForm
+public import NielsenMeasure12
+public import NielsenSevenStage
+
+@[expose] public section
 
 set_option autoImplicit false
 

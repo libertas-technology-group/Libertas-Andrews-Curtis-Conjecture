@@ -1,7 +1,11 @@
-import AcNielsenDefs
-import AcProof
-import NielsenRotationNormalForm
-import NielsenCycLenConj
+module
+
+public import AcNielsenDefs
+public import AcProof
+public import NielsenRotationNormalForm
+public import NielsenCycLenConj
+
+@[expose] public section
 
 /-!
 # AcNielsen — the cyclic Nielsen uniform pivot statement

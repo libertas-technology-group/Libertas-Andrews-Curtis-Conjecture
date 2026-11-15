@@ -1,9 +1,13 @@
-import Ak3OrbitSeparation
-import AcBS23BrittonOracle
-import Mathlib.Algebra.Group.Subgroup.ZPowers.Lemmas
-import Mathlib.GroupTheory.HNNExtension
-import Mathlib.GroupTheory.OrderOfElement
-import Mathlib.GroupTheory.SpecificGroups.Cyclic
+module
+
+public import Ak3OrbitSeparation
+public import AcBS23BrittonOracle
+public import Mathlib.Algebra.Group.Subgroup.ZPowers.Lemmas
+public import Mathlib.GroupTheory.HNNExtension
+public import Mathlib.GroupTheory.OrderOfElement
+public import Mathlib.GroupTheory.SpecificGroups.Cyclic
+
+@[expose] public section
 
 /-!
 # AcBS23HNN — the HNN model of BS(2,3)
@@ -64,7 +68,7 @@ noncomputable def zpowEquivSubgroup {G : Type*} [Group G] (g : G)
 @[simp] theorem zpowEquivSubgroup_apply {G : Type*} [Group G] (g : G)
     (hg : orderOf g = 0) (n : ℤ) :
     (zpowEquivSubgroup g hg (Multiplicative.ofAdd n) : G) = g ^ n := by
-  simp [zpowEquivSubgroup, zpowersHom_apply]
+  simp [zpowEquivSubgroup, MulEquiv.ofBijective_apply, MonoidHom.codRestrict, zpowersHom_apply]
 
 /-- The inverse cyclic equivalence sends `g ^ n` to `ofAdd n`. -/
 @[simp] theorem zpowEquivSubgroup_symm_apply {G : Type*} [Group G] (g : G)
@@ -122,8 +126,9 @@ theorem hnn_conj :
   have h := HNNExtension.equiv_eq_conj (φ := phi) hnnA
   have h2 : (zpowEquivSubgroup (Multiplicative.ofAdd (2 : ℤ)) orderOf_two).symm
       hnnA = Multiplicative.ofAdd (1 : ℤ) := by
-    simpa [hnnA] using
-      zpowEquivSubgroup_symm_apply (Multiplicative.ofAdd (2 : ℤ)) orderOf_two 1
+    rw [show hnnA = ⟨(Multiplicative.ofAdd (2 : ℤ)) ^ (1 : ℤ), Subgroup.zpow_mem_zpowers _ 1⟩
+      from Subtype.ext (by simp [hnnA])]
+    exact zpowEquivSubgroup_symm_apply (Multiplicative.ofAdd (2 : ℤ)) orderOf_two 1
   have hphi : (phi hnnA : Base) = Multiplicative.ofAdd (3 : ℤ) := by
     change ((zpowEquivSubgroup (Multiplicative.ofAdd (3 : ℤ)) orderOf_three)
       ((zpowEquivSubgroup (Multiplicative.ofAdd (2 : ℤ)) orderOf_two).symm hnnA) :

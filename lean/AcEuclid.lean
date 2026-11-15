@@ -1,11 +1,15 @@
-import AC
-import AcInvariant
-import AcProof
-import BranchB
-import Mathlib.LinearAlgebra.Matrix.Determinant.Basic
-import Mathlib.Data.Int.Order.Units
-import Mathlib.Tactic.Ring
-import Mathlib.Tactic.Linarith
+module
+
+public import AC
+public import AcInvariant
+public import AcProof
+public import BranchB
+public import Mathlib.LinearAlgebra.Matrix.Determinant.Basic
+public import Mathlib.Data.Int.Order.Units
+public import Mathlib.Tactic.Ring
+public import Mathlib.Tactic.Linarith
+
+@[expose] public section
 
 /-!
 # Euclidean row reduction at rank two
@@ -64,24 +68,24 @@ def IsDiagonalUnimodular (M : Matrix (Fin 2) (Fin 2) ℤ) : Prop :=
 /-! ## 4. Entry lemmas -/
 
 @[simp] lemma update0_zero_zero (M : Matrix (Fin 2) (Fin 2) ℤ) (r : Fin 2 → ℤ) :
-    (Function.update M 0 r) 0 0 = r 0 := by simp
+    (Function.update M 0 r) 0 0 = r 0 := by simp [Function.update]
 
 @[simp] lemma update0_zero_one (M : Matrix (Fin 2) (Fin 2) ℤ) (r : Fin 2 → ℤ) :
-    (Function.update M 0 r) 0 1 = r 1 := by simp
+    (Function.update M 0 r) 0 1 = r 1 := by simp [Function.update]
 
 @[simp] lemma update0_one_zero (M : Matrix (Fin 2) (Fin 2) ℤ) (r : Fin 2 → ℤ) :
-    (Function.update M 0 r) 1 0 = M 1 0 := by simp
+    (Function.update M 0 r) 1 0 = M 1 0 := by simp [Function.update]
 
 @[simp] lemma update0_one_one (M : Matrix (Fin 2) (Fin 2) ℤ) (r : Fin 2 → ℤ) :
-    (Function.update M 0 r) 1 1 = M 1 1 := by simp
+    (Function.update M 0 r) 1 1 = M 1 1 := by simp [Function.update]
 
 lemma expMatrix_update0 (R : Relators 2) (x : Word 2) :
     expMatrix (Function.update R 0 x) = Function.update (expMatrix R) 0 (expVec x) := by
   funext i j
   by_cases h : i = 0
   · subst h
-    simp [expMatrix]
-  · simp [expMatrix, h]
+    simp [expMatrix, Function.update]
+  · simp [expMatrix, Function.update, h]
 
 lemma expMatrix_swap (R : Relators 2) :
     expMatrix (Function.update (Function.update R 0 (R 1)) 1 (R 0)) =
@@ -109,14 +113,14 @@ lemma expMatrix_update0_mul_zpow (R : Relators 2) (k : ℤ) :
 
 lemma det_update0_add (M : Matrix (Fin 2) (Fin 2) ℤ) (k : ℤ) :
     Matrix.det (Function.update M 0 (M 0 + k • M 1)) = Matrix.det M := by
-  rw [Matrix.det_fin_two, Matrix.det_fin_two]
-  simp [Pi.add_apply]
+  rw [Matrix.det_fin_two (A := Function.update M 0 (M 0 + k • M 1)),
+    Matrix.det_fin_two (A := M)]
+  simp [Function.update, Pi.add_apply]
   ring
 
 lemma det_swapRows (M : Matrix (Fin 2) (Fin 2) ℤ) :
     Matrix.det (swapRows M) = -Matrix.det M := by
-  rw [Matrix.det_fin_two, Matrix.det_fin_two]
-  simp [swapRows]
+  simp [Matrix.det_fin_two, swapRows]
   ring
 
 /-! ## 6. Row addition with an integer multiplier is reachable -/
@@ -124,7 +128,7 @@ lemma det_swapRows (M : Matrix (Fin 2) (Fin 2) ℤ) :
 lemma row_mul_pow_reachable (R : Relators 2) (n : ℕ) :
     Reachable R (Function.update R 0 (R 0 * R 1 ^ n)) := by
   induction n with
-  | zero => simpa using (Relation.ReflTransGen.refl : Reachable R R)
+  | zero => simpa [Reachable, Function.update] using (Relation.ReflTransGen.refl : Reachable R R)
   | succ n ih =>
       have hstep : Reachable (Function.update R 0 (R 0 * R 1 ^ n))
           (Function.update R 0 (R 0 * R 1 ^ (n + 1))) := by

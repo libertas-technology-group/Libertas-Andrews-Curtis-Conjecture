@@ -1,3 +1,5 @@
+module
+
 /-
 # NielsenMeasure10Certificates — kernel chains for the eight measure-10 states
 
@@ -37,12 +39,14 @@ No `sorry`, `admit`, `axiom`, or `native_decide` occurs in this file.  The axiom
 record at the end reports the trusted base of the eight descent theorems.
 -/
 
-import AcNielsenDefs
-import AcProof
-import NielsenRotationNormalForm
-import NielsenSevenStage
-import NielsenSliceBridge
-import Mathlib.Tactic
+public import AcNielsenDefs
+public import AcProof
+public import NielsenRotationNormalForm
+public import NielsenSevenStage
+public import NielsenSliceBridge
+public import Mathlib.Tactic
+
+@[expose] public section
 
 set_option autoImplicit false
 set_option maxHeartbeats 1000000
@@ -353,40 +357,40 @@ def endpoint_1 : Relators 2 := ![wA, wbABab]
 theorem reach_state_1 : Reachable state_1 endpoint_1 := by
   have h1 : Step state_1 c1_1 :=
     step_inv0 (a := wAABab) (b := wABabb) (a' := wBAbaa)
-      (by simp only [wAABab, wABabb, wBAbaa, gx, gy, mul_inv_rev, inv_inv, mul_assoc]; group)
+      (by simp only [wAABab, wABabb, wBAbaa, gx, gy, mul_inv_rev, inv_inv, mul_assoc]; first | done | rfl | group | norm_num)
   have h2 : Step c1_1 c1_2 :=
     step_conj1 (a := wBAbaa) (b := wABabb) (c := wb) (b' := wbABab)
-      (by simp only [wABabb, wb, wbABab, gx, gy, mul_inv_rev, inv_inv]; group)
+      (by simp only [wABabb, wb, wbABab, gx, gy, mul_inv_rev, inv_inv]; first | done | rfl | group | norm_num)
   have h3 : Step c1_2 c1_3 :=
     step_mul01 (a := wBAbaa) (b := wbABab) (a' := wBAbaabABab)
-      (by simp only [wBAbaa, wBAbaabABab, wbABab, gx, gy, mul_assoc]; group)
+      (by simp only [wBAbaa, wBAbaabABab, wbABab, gx, gy, mul_assoc]; first | done | rfl | group | norm_num)
   have h4 : Step c1_3 c1_4 :=
     step_conj0 (a := wBAbaabABab) (b := wbABab) (c := wb) (a' := wAbaabABa)
-      (by simp only [wAbaabABa, wBAbaabABab, wb, gx, gy, mul_inv_rev, inv_inv]; group)
+      (by simp only [wAbaabABa, wBAbaabABab, wb, gx, gy, mul_inv_rev, inv_inv]; first | done | rfl | group | norm_num)
   have h5 : Step c1_4 c1_5 :=
     step_conj0 (a := wAbaabABa) (b := wbABab) (c := wa) (a' := wbaabAB)
-      (by simp only [wAbaabABa, wa, wbaabAB, gx, gy, mul_inv_rev, inv_inv]; group)
+      (by simp only [wAbaabABa, wa, wbaabAB, gx, gy, mul_inv_rev, inv_inv]; first | done | rfl | group | norm_num)
   have h6 : Step c1_5 c1_6 :=
     step_conj0 (a := wbaabAB) (b := wbABab) (c := wB) (a' := waabA)
-      (by simp only [wB, waabA, wbaabAB, gx, gy, mul_inv_rev, inv_inv]; group)
+      (by simp only [wB, waabA, wbaabAB, gx, gy, mul_inv_rev, inv_inv]; first | done | rfl | group | norm_num)
   have h7 : Step c1_6 c1_7 :=
     step_conj0 (a := waabA) (b := wbABab) (c := wA) (a' := wab)
-      (by simp only [wA, waabA, wab, gx, gy, mul_inv_rev, inv_inv]; group)
+      (by simp only [wA, waabA, wab, gx, gy, mul_inv_rev, inv_inv]; first | done | rfl | group | norm_num)
   have h8 : Step c1_7 c1_8 :=
     step_inv0 (a := wab) (b := wbABab) (a' := wBA)
-      (by simp only [wBA, wab, wbABab, gx, gy, mul_inv_rev, inv_inv, mul_assoc]; group)
+      (by simp only [wBA, wab, wbABab, gx, gy, mul_inv_rev, inv_inv, mul_assoc]; first | done | rfl | group | norm_num)
   have h9 : Step c1_8 c1_9 :=
     step_mul01 (a := wBA) (b := wbABab) (a' := wBAbABab)
-      (by simp only [wBA, wBAbABab, wbABab, gx, gy, mul_assoc]; group)
+      (by simp only [wBA, wBAbABab, wbABab, gx, gy, mul_assoc]; first | done | rfl | group | norm_num)
   have h10 : Step c1_9 c1_10 :=
     step_conj0 (a := wBAbABab) (b := wbABab) (c := wb) (a' := wAbABa)
-      (by simp only [wAbABa, wBAbABab, wb, gx, gy, mul_inv_rev, inv_inv]; group)
+      (by simp only [wAbABa, wBAbABab, wb, gx, gy, mul_inv_rev, inv_inv]; first | done | rfl | group | norm_num)
   have h11 : Step c1_10 c1_11 :=
     step_conj0 (a := wAbABa) (b := wbABab) (c := wa) (a' := wbAB)
-      (by simp only [wAbABa, wa, wbAB, gx, gy, mul_inv_rev, inv_inv]; group)
+      (by simp only [wAbABa, wa, wbAB, gx, gy, mul_inv_rev, inv_inv]; first | done | rfl | group | norm_num)
   have h12 : Step c1_11 endpoint_1 :=
     step_conj0 (a := wbAB) (b := wbABab) (c := wB) (a' := wA)
-      (by simp only [wA, wB, wbAB, gx, gy, mul_inv_rev, inv_inv]; group)
+      (by simp only [wA, wB, wbAB, gx, gy, mul_inv_rev, inv_inv]; first | done | rfl | group | norm_num)
   exact (Relation.ReflTransGen.trans (Relation.ReflTransGen.single h1)
       (Relation.ReflTransGen.trans (Relation.ReflTransGen.single h2)
             (Relation.ReflTransGen.trans (Relation.ReflTransGen.single h3)
@@ -459,25 +463,25 @@ def endpoint_2 : Relators 2 := ![wAABab, wB]
 theorem reach_state_2 : Reachable state_2 endpoint_2 := by
   have h1 : Step state_2 c2_1 :=
     step_inv0 (a := wAABab) (b := wABBab) (a' := wBAbaa)
-      (by simp only [wAABab, wABBab, wBAbaa, gx, gy, mul_inv_rev, inv_inv, mul_assoc]; group)
+      (by simp only [wAABab, wABBab, wBAbaa, gx, gy, mul_inv_rev, inv_inv, mul_assoc]; first | done | rfl | group | norm_num)
   have h2 : Step c2_1 c2_2 :=
     step_mul10 (a := wBAbaa) (b := wABBab) (b' := wABaa)
-      (by simp only [wABBab, wABaa, wBAbaa, gx, gy, mul_assoc]; group)
+      (by simp only [wABBab, wABaa, wBAbaa, gx, gy, mul_assoc]; first | done | rfl | group | norm_num)
   have h3 : Step c2_2 c2_3 :=
     step_conj1 (a := wBAbaa) (b := wABaa) (c := wa) (b' := wBa)
-      (by simp only [wABaa, wBa, wa, gx, gy, mul_inv_rev, inv_inv]; group)
+      (by simp only [wABaa, wBa, wa, gx, gy, mul_inv_rev, inv_inv]; first | done | rfl | group | norm_num)
   have h4 : Step c2_3 c2_4 :=
     step_inv0 (a := wBAbaa) (b := wBa) (a' := wAABab)
-      (by simp only [wAABab, wBAbaa, wBa, gx, gy, mul_inv_rev, inv_inv, mul_assoc]; group)
+      (by simp only [wAABab, wBAbaa, wBa, gx, gy, mul_inv_rev, inv_inv, mul_assoc]; first | done | rfl | group | norm_num)
   have h5 : Step c2_4 c2_5 :=
     step_mul10 (a := wAABab) (b := wBa) (b' := wBABab)
-      (by simp only [wAABab, wBABab, wBa, gx, gy, mul_assoc]; group)
+      (by simp only [wAABab, wBABab, wBa, gx, gy, mul_assoc]; first | done | rfl | group | norm_num)
   have h6 : Step c2_5 c2_6 :=
     step_conj1 (a := wAABab) (b := wBABab) (c := wb) (b' := wABa)
-      (by simp only [wABa, wBABab, wb, gx, gy, mul_inv_rev, inv_inv]; group)
+      (by simp only [wABa, wBABab, wb, gx, gy, mul_inv_rev, inv_inv]; first | done | rfl | group | norm_num)
   have h7 : Step c2_6 endpoint_2 :=
     step_conj1 (a := wAABab) (b := wABa) (c := wa) (b' := wB)
-      (by simp only [wABa, wB, wa, gx, gy, mul_inv_rev, inv_inv]; group)
+      (by simp only [wABa, wB, wa, gx, gy, mul_inv_rev, inv_inv]; first | done | rfl | group | norm_num)
   exact (Relation.ReflTransGen.trans (Relation.ReflTransGen.single h1)
       (Relation.ReflTransGen.trans (Relation.ReflTransGen.single h2)
             (Relation.ReflTransGen.trans (Relation.ReflTransGen.single h3)
@@ -546,28 +550,28 @@ def endpoint_3 : Relators 2 := ![wA, wBBAba]
 theorem reach_state_3 : Reachable state_3 endpoint_3 := by
   have h1 : Step state_3 c3_1 :=
     step_conj0 (a := wAAbaB) (b := wABabb) (c := wAB) (a' := wABAAbaa)
-      (by simp only [wAAbaB, wAB, wABAAbaa, gx, gy, mul_inv_rev, inv_inv]; group)
+      (by simp only [wAAbaB, wAB, wABAAbaa, gx, gy, mul_inv_rev, inv_inv]; first | done | rfl | group | norm_num)
   have h2 : Step c3_1 c3_2 :=
     step_conj0 (a := wABAAbaa) (b := wABabb) (c := wa) (a' := wBAAba)
-      (by simp only [wABAAbaa, wBAAba, wa, gx, gy, mul_inv_rev, inv_inv]; group)
+      (by simp only [wABAAbaa, wBAAba, wa, gx, gy, mul_inv_rev, inv_inv]; first | done | rfl | group | norm_num)
   have h3 : Step c3_2 c3_3 :=
     step_mul01 (a := wBAAba) (b := wABabb) (a' := wBAbb)
-      (by simp only [wABabb, wBAAba, wBAbb, gx, gy, mul_assoc]; group)
+      (by simp only [wABabb, wBAAba, wBAbb, gx, gy, mul_assoc]; first | done | rfl | group | norm_num)
   have h4 : Step c3_3 c3_4 :=
     step_conj0 (a := wBAbb) (b := wABabb) (c := wb) (a' := wAb)
-      (by simp only [wAb, wBAbb, wb, gx, gy, mul_inv_rev, inv_inv]; group)
+      (by simp only [wAb, wBAbb, wb, gx, gy, mul_inv_rev, inv_inv]; first | done | rfl | group | norm_num)
   have h5 : Step c3_4 c3_5 :=
     step_inv1 (a := wAb) (b := wABabb) (b' := wBBAba)
-      (by simp only [wABabb, wAb, wBBAba, gx, gy, mul_inv_rev, inv_inv, mul_assoc]; group)
+      (by simp only [wABabb, wAb, wBBAba, gx, gy, mul_inv_rev, inv_inv, mul_assoc]; first | done | rfl | group | norm_num)
   have h6 : Step c3_5 c3_6 :=
     step_mul01 (a := wAb) (b := wBBAba) (a' := wABAba)
-      (by simp only [wABAba, wAb, wBBAba, gx, gy, mul_assoc]; group)
+      (by simp only [wABAba, wAb, wBBAba, gx, gy, mul_assoc]; first | done | rfl | group | norm_num)
   have h7 : Step c3_6 c3_7 :=
     step_conj0 (a := wABAba) (b := wBBAba) (c := wa) (a' := wBAb)
-      (by simp only [wABAba, wBAb, wa, gx, gy, mul_inv_rev, inv_inv]; group)
+      (by simp only [wABAba, wBAb, wa, gx, gy, mul_inv_rev, inv_inv]; first | done | rfl | group | norm_num)
   have h8 : Step c3_7 endpoint_3 :=
     step_conj0 (a := wBAb) (b := wBBAba) (c := wb) (a' := wA)
-      (by simp only [wA, wBAb, wb, gx, gy, mul_inv_rev, inv_inv]; group)
+      (by simp only [wA, wBAb, wb, gx, gy, mul_inv_rev, inv_inv]; first | done | rfl | group | norm_num)
   exact (Relation.ReflTransGen.trans (Relation.ReflTransGen.single h1)
       (Relation.ReflTransGen.trans (Relation.ReflTransGen.single h2)
             (Relation.ReflTransGen.trans (Relation.ReflTransGen.single h3)
@@ -639,34 +643,34 @@ def endpoint_4 : Relators 2 := ![wA, wBAbba]
 theorem reach_state_4 : Reachable state_4 endpoint_4 := by
   have h1 : Step state_4 c4_1 :=
     step_conj0 (a := wAAbaB) (b := wABBab) (c := wAB) (a' := wABAAbaa)
-      (by simp only [wAAbaB, wAB, wABAAbaa, gx, gy, mul_inv_rev, inv_inv]; group)
+      (by simp only [wAAbaB, wAB, wABAAbaa, gx, gy, mul_inv_rev, inv_inv]; first | done | rfl | group | norm_num)
   have h2 : Step c4_1 c4_2 :=
     step_conj0 (a := wABAAbaa) (b := wABBab) (c := wa) (a' := wBAAba)
-      (by simp only [wABAAbaa, wBAAba, wa, gx, gy, mul_inv_rev, inv_inv]; group)
+      (by simp only [wABAAbaa, wBAAba, wa, gx, gy, mul_inv_rev, inv_inv]; first | done | rfl | group | norm_num)
   have h3 : Step c4_2 c4_3 :=
     step_mul01 (a := wBAAba) (b := wABBab) (a' := wBAABab)
-      (by simp only [wABBab, wBAABab, wBAAba, gx, gy, mul_assoc]; group)
+      (by simp only [wABBab, wBAABab, wBAAba, gx, gy, mul_assoc]; first | done | rfl | group | norm_num)
   have h4 : Step c4_3 c4_4 :=
     step_conj0 (a := wBAABab) (b := wABBab) (c := wb) (a' := wAABa)
-      (by simp only [wAABa, wBAABab, wb, gx, gy, mul_inv_rev, inv_inv]; group)
+      (by simp only [wAABa, wBAABab, wb, gx, gy, mul_inv_rev, inv_inv]; first | done | rfl | group | norm_num)
   have h5 : Step c4_4 c4_5 :=
     step_conj0 (a := wAABa) (b := wABBab) (c := wa) (a' := wAB)
-      (by simp only [wAABa, wAB, wa, gx, gy, mul_inv_rev, inv_inv]; group)
+      (by simp only [wAABa, wAB, wa, gx, gy, mul_inv_rev, inv_inv]; first | done | rfl | group | norm_num)
   have h6 : Step c4_5 c4_6 :=
     step_inv1 (a := wAB) (b := wABBab) (b' := wBAbba)
-      (by simp only [wAB, wABBab, wBAbba, gx, gy, mul_inv_rev, inv_inv, mul_assoc]; group)
+      (by simp only [wAB, wABBab, wBAbba, gx, gy, mul_inv_rev, inv_inv, mul_assoc]; first | done | rfl | group | norm_num)
   have h7 : Step c4_6 c4_7 :=
     step_mul01 (a := wAB) (b := wBAbba) (a' := wABBAbba)
-      (by simp only [wAB, wABBAbba, wBAbba, gx, gy, mul_assoc]; group)
+      (by simp only [wAB, wABBAbba, wBAbba, gx, gy, mul_assoc]; first | done | rfl | group | norm_num)
   have h8 : Step c4_7 c4_8 :=
     step_conj0 (a := wABBAbba) (b := wBAbba) (c := wa) (a' := wBBAbb)
-      (by simp only [wABBAbba, wBBAbb, wa, gx, gy, mul_inv_rev, inv_inv]; group)
+      (by simp only [wABBAbba, wBBAbb, wa, gx, gy, mul_inv_rev, inv_inv]; first | done | rfl | group | norm_num)
   have h9 : Step c4_8 c4_9 :=
     step_conj0 (a := wBBAbb) (b := wBAbba) (c := wb) (a' := wBAb)
-      (by simp only [wBAb, wBBAbb, wb, gx, gy, mul_inv_rev, inv_inv]; group)
+      (by simp only [wBAb, wBBAbb, wb, gx, gy, mul_inv_rev, inv_inv]; first | done | rfl | group | norm_num)
   have h10 : Step c4_9 endpoint_4 :=
     step_conj0 (a := wBAb) (b := wBAbba) (c := wb) (a' := wA)
-      (by simp only [wA, wBAb, wb, gx, gy, mul_inv_rev, inv_inv]; group)
+      (by simp only [wA, wBAb, wb, gx, gy, mul_inv_rev, inv_inv]; first | done | rfl | group | norm_num)
   exact (Relation.ReflTransGen.trans (Relation.ReflTransGen.single h1)
       (Relation.ReflTransGen.trans (Relation.ReflTransGen.single h2)
             (Relation.ReflTransGen.trans (Relation.ReflTransGen.single h3)
@@ -742,40 +746,40 @@ def endpoint_5 : Relators 2 := ![wB, waBAba]
 theorem reach_state_5 : Reachable state_5 endpoint_5 := by
   have h1 : Step state_5 c5_1 :=
     step_inv1 (a := wABabb) (b := wAABab) (b' := wBAbaa)
-      (by simp only [wAABab, wABabb, wBAbaa, gx, gy, mul_inv_rev, inv_inv, mul_assoc]; group)
+      (by simp only [wAABab, wABabb, wBAbaa, gx, gy, mul_inv_rev, inv_inv, mul_assoc]; first | done | rfl | group | norm_num)
   have h2 : Step c5_1 c5_2 :=
     step_conj1 (a := wABabb) (b := wBAbaa) (c := wa) (b' := waBAba)
-      (by simp only [wBAbaa, wa, waBAba, gx, gy, mul_inv_rev, inv_inv]; group)
+      (by simp only [wBAbaa, wa, waBAba, gx, gy, mul_inv_rev, inv_inv]; first | done | rfl | group | norm_num)
   have h3 : Step c5_2 c5_3 :=
     step_mul01 (a := wABabb) (b := waBAba) (a' := wABabbaBAba)
-      (by simp only [wABabb, wABabbaBAba, waBAba, gx, gy, mul_assoc]; group)
+      (by simp only [wABabb, wABabbaBAba, waBAba, gx, gy, mul_assoc]; first | done | rfl | group | norm_num)
   have h4 : Step c5_3 c5_4 :=
     step_conj0 (a := wABabbaBAba) (b := waBAba) (c := wa) (a' := wBabbaBAb)
-      (by simp only [wABabbaBAba, wBabbaBAb, wa, gx, gy, mul_inv_rev, inv_inv]; group)
+      (by simp only [wABabbaBAba, wBabbaBAb, wa, gx, gy, mul_inv_rev, inv_inv]; first | done | rfl | group | norm_num)
   have h5 : Step c5_4 c5_5 :=
     step_conj0 (a := wBabbaBAb) (b := waBAba) (c := wb) (a' := wabbaBA)
-      (by simp only [wBabbaBAb, wabbaBA, wb, gx, gy, mul_inv_rev, inv_inv]; group)
+      (by simp only [wBabbaBAb, wabbaBA, wb, gx, gy, mul_inv_rev, inv_inv]; first | done | rfl | group | norm_num)
   have h6 : Step c5_5 c5_6 :=
     step_conj0 (a := wabbaBA) (b := waBAba) (c := wA) (a' := wbbaB)
-      (by simp only [wA, wabbaBA, wbbaB, gx, gy, mul_inv_rev, inv_inv]; group)
+      (by simp only [wA, wabbaBA, wbbaB, gx, gy, mul_inv_rev, inv_inv]; first | done | rfl | group | norm_num)
   have h7 : Step c5_6 c5_7 :=
     step_conj0 (a := wbbaB) (b := waBAba) (c := wB) (a' := wba)
-      (by simp only [wB, wba, wbbaB, gx, gy, mul_inv_rev, inv_inv]; group)
+      (by simp only [wB, wba, wbbaB, gx, gy, mul_inv_rev, inv_inv]; first | done | rfl | group | norm_num)
   have h8 : Step c5_7 c5_8 :=
     step_inv0 (a := wba) (b := waBAba) (a' := wAB)
-      (by simp only [wAB, waBAba, wba, gx, gy, mul_inv_rev, inv_inv, mul_assoc]; group)
+      (by simp only [wAB, waBAba, wba, gx, gy, mul_inv_rev, inv_inv, mul_assoc]; first | done | rfl | group | norm_num)
   have h9 : Step c5_8 c5_9 :=
     step_mul01 (a := wAB) (b := waBAba) (a' := wABaBAba)
-      (by simp only [wAB, wABaBAba, waBAba, gx, gy, mul_assoc]; group)
+      (by simp only [wAB, wABaBAba, waBAba, gx, gy, mul_assoc]; first | done | rfl | group | norm_num)
   have h10 : Step c5_9 c5_10 :=
     step_conj0 (a := wABaBAba) (b := waBAba) (c := wa) (a' := wBaBAb)
-      (by simp only [wABaBAba, wBaBAb, wa, gx, gy, mul_inv_rev, inv_inv]; group)
+      (by simp only [wABaBAba, wBaBAb, wa, gx, gy, mul_inv_rev, inv_inv]; first | done | rfl | group | norm_num)
   have h11 : Step c5_10 c5_11 :=
     step_conj0 (a := wBaBAb) (b := waBAba) (c := wb) (a' := waBA)
-      (by simp only [wBaBAb, waBA, wb, gx, gy, mul_inv_rev, inv_inv]; group)
+      (by simp only [wBaBAb, waBA, wb, gx, gy, mul_inv_rev, inv_inv]; first | done | rfl | group | norm_num)
   have h12 : Step c5_11 endpoint_5 :=
     step_conj0 (a := waBA) (b := waBAba) (c := wA) (a' := wB)
-      (by simp only [wA, wB, waBA, gx, gy, mul_inv_rev, inv_inv]; group)
+      (by simp only [wA, wB, waBA, gx, gy, mul_inv_rev, inv_inv]; first | done | rfl | group | norm_num)
   exact (Relation.ReflTransGen.trans (Relation.ReflTransGen.single h1)
       (Relation.ReflTransGen.trans (Relation.ReflTransGen.single h2)
             (Relation.ReflTransGen.trans (Relation.ReflTransGen.single h3)
@@ -849,28 +853,28 @@ def endpoint_6 : Relators 2 := ![wABabb, wa]
 theorem reach_state_6 : Reachable state_6 endpoint_6 := by
   have h1 : Step state_6 c6_1 :=
     step_conj1 (a := wABabb) (b := wAAbaB) (c := wAB) (b' := wABAAbaa)
-      (by simp only [wAAbaB, wAB, wABAAbaa, gx, gy, mul_inv_rev, inv_inv]; group)
+      (by simp only [wAAbaB, wAB, wABAAbaa, gx, gy, mul_inv_rev, inv_inv]; first | done | rfl | group | norm_num)
   have h2 : Step c6_1 c6_2 :=
     step_conj1 (a := wABabb) (b := wABAAbaa) (c := wa) (b' := wBAAba)
-      (by simp only [wABAAbaa, wBAAba, wa, gx, gy, mul_inv_rev, inv_inv]; group)
+      (by simp only [wABAAbaa, wBAAba, wa, gx, gy, mul_inv_rev, inv_inv]; first | done | rfl | group | norm_num)
   have h3 : Step c6_2 c6_3 :=
     step_mul10 (a := wABabb) (b := wBAAba) (b' := wBAbb)
-      (by simp only [wABabb, wBAAba, wBAbb, gx, gy, mul_assoc]; group)
+      (by simp only [wABabb, wBAAba, wBAbb, gx, gy, mul_assoc]; first | done | rfl | group | norm_num)
   have h4 : Step c6_3 c6_4 :=
     step_conj1 (a := wABabb) (b := wBAbb) (c := wb) (b' := wAb)
-      (by simp only [wAb, wBAbb, wb, gx, gy, mul_inv_rev, inv_inv]; group)
+      (by simp only [wAb, wBAbb, wb, gx, gy, mul_inv_rev, inv_inv]; first | done | rfl | group | norm_num)
   have h5 : Step c6_4 c6_5 :=
     step_inv1 (a := wABabb) (b := wAb) (b' := wBa)
-      (by simp only [wABabb, wAb, wBa, gx, gy, mul_inv_rev, inv_inv, mul_assoc]; group)
+      (by simp only [wABabb, wAb, wBa, gx, gy, mul_inv_rev, inv_inv, mul_assoc]; first | done | rfl | group | norm_num)
   have h6 : Step c6_5 c6_6 :=
     step_mul10 (a := wABabb) (b := wBa) (b' := wBBabb)
-      (by simp only [wABabb, wBBabb, wBa, gx, gy, mul_assoc]; group)
+      (by simp only [wABabb, wBBabb, wBa, gx, gy, mul_assoc]; first | done | rfl | group | norm_num)
   have h7 : Step c6_6 c6_7 :=
     step_conj1 (a := wABabb) (b := wBBabb) (c := wb) (b' := wBab)
-      (by simp only [wBBabb, wBab, wb, gx, gy, mul_inv_rev, inv_inv]; group)
+      (by simp only [wBBabb, wBab, wb, gx, gy, mul_inv_rev, inv_inv]; first | done | rfl | group | norm_num)
   have h8 : Step c6_7 endpoint_6 :=
     step_conj1 (a := wABabb) (b := wBab) (c := wb) (b' := wa)
-      (by simp only [wBab, wa, wb, gx, gy, mul_inv_rev, inv_inv]; group)
+      (by simp only [wBab, wa, wb, gx, gy, mul_inv_rev, inv_inv]; first | done | rfl | group | norm_num)
   exact (Relation.ReflTransGen.trans (Relation.ReflTransGen.single h1)
       (Relation.ReflTransGen.trans (Relation.ReflTransGen.single h2)
             (Relation.ReflTransGen.trans (Relation.ReflTransGen.single h3)
@@ -939,25 +943,25 @@ def endpoint_7 : Relators 2 := ![wB, wAABab]
 theorem reach_state_7 : Reachable state_7 endpoint_7 := by
   have h1 : Step state_7 c7_1 :=
     step_inv1 (a := wABBab) (b := wAABab) (b' := wBAbaa)
-      (by simp only [wAABab, wABBab, wBAbaa, gx, gy, mul_inv_rev, inv_inv, mul_assoc]; group)
+      (by simp only [wAABab, wABBab, wBAbaa, gx, gy, mul_inv_rev, inv_inv, mul_assoc]; first | done | rfl | group | norm_num)
   have h2 : Step c7_1 c7_2 :=
     step_mul01 (a := wABBab) (b := wBAbaa) (a' := wABaa)
-      (by simp only [wABBab, wABaa, wBAbaa, gx, gy, mul_assoc]; group)
+      (by simp only [wABBab, wABaa, wBAbaa, gx, gy, mul_assoc]; first | done | rfl | group | norm_num)
   have h3 : Step c7_2 c7_3 :=
     step_conj0 (a := wABaa) (b := wBAbaa) (c := wa) (a' := wBa)
-      (by simp only [wABaa, wBa, wa, gx, gy, mul_inv_rev, inv_inv]; group)
+      (by simp only [wABaa, wBa, wa, gx, gy, mul_inv_rev, inv_inv]; first | done | rfl | group | norm_num)
   have h4 : Step c7_3 c7_4 :=
     step_inv1 (a := wBa) (b := wBAbaa) (b' := wAABab)
-      (by simp only [wAABab, wBAbaa, wBa, gx, gy, mul_inv_rev, inv_inv, mul_assoc]; group)
+      (by simp only [wAABab, wBAbaa, wBa, gx, gy, mul_inv_rev, inv_inv, mul_assoc]; first | done | rfl | group | norm_num)
   have h5 : Step c7_4 c7_5 :=
     step_mul01 (a := wBa) (b := wAABab) (a' := wBABab)
-      (by simp only [wAABab, wBABab, wBa, gx, gy, mul_assoc]; group)
+      (by simp only [wAABab, wBABab, wBa, gx, gy, mul_assoc]; first | done | rfl | group | norm_num)
   have h6 : Step c7_5 c7_6 :=
     step_conj0 (a := wBABab) (b := wAABab) (c := wb) (a' := wABa)
-      (by simp only [wABa, wBABab, wb, gx, gy, mul_inv_rev, inv_inv]; group)
+      (by simp only [wABa, wBABab, wb, gx, gy, mul_inv_rev, inv_inv]; first | done | rfl | group | norm_num)
   have h7 : Step c7_6 endpoint_7 :=
     step_conj0 (a := wABa) (b := wAABab) (c := wa) (a' := wB)
-      (by simp only [wABa, wB, wa, gx, gy, mul_inv_rev, inv_inv]; group)
+      (by simp only [wABa, wB, wa, gx, gy, mul_inv_rev, inv_inv]; first | done | rfl | group | norm_num)
   exact (Relation.ReflTransGen.trans (Relation.ReflTransGen.single h1)
       (Relation.ReflTransGen.trans (Relation.ReflTransGen.single h2)
             (Relation.ReflTransGen.trans (Relation.ReflTransGen.single h3)
@@ -1026,28 +1030,28 @@ def endpoint_8 : Relators 2 := ![wABBab, wa]
 theorem reach_state_8 : Reachable state_8 endpoint_8 := by
   have h1 : Step state_8 c8_1 :=
     step_conj1 (a := wABBab) (b := wAAbaB) (c := wAB) (b' := wABAAbaa)
-      (by simp only [wAAbaB, wAB, wABAAbaa, gx, gy, mul_inv_rev, inv_inv]; group)
+      (by simp only [wAAbaB, wAB, wABAAbaa, gx, gy, mul_inv_rev, inv_inv]; first | done | rfl | group | norm_num)
   have h2 : Step c8_1 c8_2 :=
     step_conj1 (a := wABBab) (b := wABAAbaa) (c := wa) (b' := wBAAba)
-      (by simp only [wABAAbaa, wBAAba, wa, gx, gy, mul_inv_rev, inv_inv]; group)
+      (by simp only [wABAAbaa, wBAAba, wa, gx, gy, mul_inv_rev, inv_inv]; first | done | rfl | group | norm_num)
   have h3 : Step c8_2 c8_3 :=
     step_mul10 (a := wABBab) (b := wBAAba) (b' := wBAABab)
-      (by simp only [wABBab, wBAABab, wBAAba, gx, gy, mul_assoc]; group)
+      (by simp only [wABBab, wBAABab, wBAAba, gx, gy, mul_assoc]; first | done | rfl | group | norm_num)
   have h4 : Step c8_3 c8_4 :=
     step_conj1 (a := wABBab) (b := wBAABab) (c := wb) (b' := wAABa)
-      (by simp only [wAABa, wBAABab, wb, gx, gy, mul_inv_rev, inv_inv]; group)
+      (by simp only [wAABa, wBAABab, wb, gx, gy, mul_inv_rev, inv_inv]; first | done | rfl | group | norm_num)
   have h5 : Step c8_4 c8_5 :=
     step_conj1 (a := wABBab) (b := wAABa) (c := wa) (b' := wAB)
-      (by simp only [wAABa, wAB, wa, gx, gy, mul_inv_rev, inv_inv]; group)
+      (by simp only [wAABa, wAB, wa, gx, gy, mul_inv_rev, inv_inv]; first | done | rfl | group | norm_num)
   have h6 : Step c8_5 c8_6 :=
     step_inv1 (a := wABBab) (b := wAB) (b' := wba)
-      (by simp only [wAB, wABBab, wba, gx, gy, mul_inv_rev, inv_inv, mul_assoc]; group)
+      (by simp only [wAB, wABBab, wba, gx, gy, mul_inv_rev, inv_inv, mul_assoc]; first | done | rfl | group | norm_num)
   have h7 : Step c8_6 c8_7 :=
     step_mul10 (a := wABBab) (b := wba) (b' := wBab)
-      (by simp only [wABBab, wBab, wba, gx, gy, mul_assoc]; group)
+      (by simp only [wABBab, wBab, wba, gx, gy, mul_assoc]; first | done | rfl | group | norm_num)
   have h8 : Step c8_7 endpoint_8 :=
     step_conj1 (a := wABBab) (b := wBab) (c := wb) (b' := wa)
-      (by simp only [wBab, wa, wb, gx, gy, mul_inv_rev, inv_inv]; group)
+      (by simp only [wBab, wa, wb, gx, gy, mul_inv_rev, inv_inv]; first | done | rfl | group | norm_num)
   exact (Relation.ReflTransGen.trans (Relation.ReflTransGen.single h1)
       (Relation.ReflTransGen.trans (Relation.ReflTransGen.single h2)
             (Relation.ReflTransGen.trans (Relation.ReflTransGen.single h3)

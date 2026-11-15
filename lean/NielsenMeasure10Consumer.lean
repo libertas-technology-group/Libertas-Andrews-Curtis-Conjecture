@@ -1,3 +1,5 @@
+module
+
 /-
 # NielsenMeasure10Consumer — the `hten` input of the oddness bridge
 
@@ -39,9 +41,11 @@ No `sorry`, `admit`, `axiom`, or `native_decide` occurs in this file.  The axiom
 record at the end reports the trusted base of `measure10_input`.
 -/
 
-import NielsenMeasure10Certificates
-import NielsenSliceBridge
-import Mathlib.Tactic
+public import NielsenMeasure10Certificates
+public import NielsenSliceBridge
+public import Mathlib.Tactic
+
+@[expose] public section
 
 set_option autoImplicit false
 set_option maxHeartbeats 4000000

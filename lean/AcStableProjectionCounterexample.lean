@@ -1,4 +1,8 @@
-import AcStableTrivial
+module
+
+public import AcStableTrivial
+
+@[expose] public section
 
 /-!
 # AcStableProjectionCounterexample — the rank-two stable projection inverse

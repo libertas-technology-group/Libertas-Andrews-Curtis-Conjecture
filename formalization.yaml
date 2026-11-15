@@ -26,12 +26,8 @@ repository:
   url: https://github.com/libertas-technology-group/Libertas-Andrews-Curtis-Conjecture
   project_path: .
 classification:
-  arxiv:
-  - math.GR
-  msc2020:
-  - 20F05
-  - 20E05
-  - 57M20
+  arxiv: ["math.GR"]
+  msc2020: ["20F05", "57M05"]
 sources:
 - title: Free Groups and Handlebodies
   authors:
@@ -40,7 +36,7 @@ sources:
   year: 1965
   venue: Proceedings of the American Mathematical Society 16, 192-195
   identifier: 10.1090/s0002-9939-1965-0173241-8
-  relationship: background
+  relationship: formalizes
 - title: The Andrews–Curtis conjecture and black box groups
   authors:
   - A. V. Borovik
@@ -56,7 +52,7 @@ sources:
   year: 2018
   venue: Proceedings of the American Mathematical Society 146
   identifier: 10.1090/proc/13710
-  relationship: background
+  relationship: adapts
 - title: Stable Andrews–Curtis trivialization of AK(3) revisited. A case study using automated deduction
   authors:
   - A. Lisitsa

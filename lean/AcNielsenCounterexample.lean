@@ -1,4 +1,8 @@
-import AcNielsen
+module
+
+public import AcNielsen
+
+@[expose] public section
 
 /-!
 # AcNielsenCounterexample — the Nielsen inverse statement

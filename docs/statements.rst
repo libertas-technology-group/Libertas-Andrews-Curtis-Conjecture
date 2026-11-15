@@ -25,7 +25,7 @@ A word on ``n`` generators is an element of the free group ``FreeGroup (Fin n)``
    def PresentsTrivialGroup {n : ℕ} (R : Relators n) : Prop :=
      Subsingleton (PresentedGroup (Set.range R))
 
-Source: ``lean/AC.lean:18-30``.
+Source: ``lean/AC.lean:21-30``.
 
 The ordinary move relation
 --------------------------
@@ -49,7 +49,7 @@ Reachability is the reflexive-transitive closure of the move relation. The empty
    def Reachable {n : ℕ} : Relators n → Relators n → Prop :=
      Relation.ReflTransGen Step
 
-Source: ``lean/AC.lean:36-50``.
+Source: ``lean/AC.lean:40-50``.
 
 The ordinary conjecture
 -----------------------
@@ -60,7 +60,7 @@ The ordinary conjecture
      ∀ (n : ℕ), 0 < n → ∀ (R : Relators n),
        PresentsTrivialGroup R → Reachable R (standard n)
 
-Source: ``lean/AC.lean:55-57``.
+Source: ``lean/AC.lean:59-57``.
 
 The rank-zero case is excluded from the quantifier and holds trivially. Relator permutations are reachable, so the ordered standard target adds no restriction.
 
@@ -87,7 +87,7 @@ A stable state carries its rank, so the state type is a dependent pair of a rank
    def StableReachable : Presentation → Presentation → Prop :=
      Relation.ReflTransGen StableStep
 
-Source: ``lean/AC.lean:80-104``. A stable step either preserves the rank or changes it by one; ``AC.BranchD.rankOf_stableStep`` records that accounting (``lean/BranchD.lean:102``).
+Source: ``lean/AC.lean:79-104``. A stable step either preserves the rank or changes it by one; ``AC.BranchD.rankOf_stableStep`` records that accounting (``lean/BranchD.lean:106``).
 
 The stable conjecture
 ---------------------
@@ -100,9 +100,9 @@ The endpoint is the standard tuple at the original rank. The stable path may lea
      ∀ (n : ℕ), 0 < n → ∀ (R : Relators n),
        PresentsTrivialGroup R → StableReachable ⟨n, R⟩ ⟨n, standard n⟩
 
-Source: ``lean/AC.lean:110-112``.
+Source: ``lean/AC.lean:114-112``.
 
-The empty presentation is an equivalent endpoint. ``AC.BranchD.stableConjecture_iff_empty_terminal`` proves that the form above is equivalent to the same statement with the empty presentation as its target (``lean/BranchD.lean:203``).
+The empty presentation is an equivalent endpoint. ``AC.BranchD.stableConjecture_iff_empty_terminal`` proves that the form above is equivalent to the same statement with the empty presentation as its target (``lean/BranchD.lean:207``).
 
 What the statements do not assert
 ---------------------------------
@@ -112,8 +112,8 @@ What the statements do not assert
 - The stable statement does not assert the ordinary statement. A stable path can
   change the rank, so it has no direct reading as an ordinary path.
 - The implication ``AC.Conjecture → AC.StableConjecture`` is proved by
-  ``AC.Conjecture.stable`` (``lean/AC.lean:141``). The converse implication is
+  ``AC.Conjecture.stable`` (``lean/AC.lean:145``). The converse implication is
   the projection principle ``AC.BranchD.StableImpliesOrdinary``, which is stated
-  and not proved (``lean/BranchD.lean:255``).
+  and not proved (``lean/BranchD.lean:259``).
 - Neither ``AC.Conjecture`` nor ``AC.StableConjecture`` is proved in this
   repository.

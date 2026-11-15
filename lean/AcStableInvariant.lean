@@ -1,9 +1,13 @@
-import AC
-import AcBase
-import AcProof
-import Ak3
-import Mathlib.GroupTheory.Abelianization.Defs
-import Mathlib.Tactic
+module
+
+public import AC
+public import AcBase
+public import AcProof
+public import Ak3
+public import Mathlib.GroupTheory.Abelianization.Defs
+public import Mathlib.Tactic
+
+@[expose] public section
 
 /-!
 # Stable AC: a presented-group invariant and the AK(3) no-go
@@ -100,7 +104,7 @@ theorem presentedGroup_mulEquiv_of_step {n : ℕ} {R S : Relators n} (h : Step R
   have hN := normalClosure_range_step h
   refine ⟨QuotientGroup.congr (Subgroup.normalClosure (Set.range R))
     (Subgroup.normalClosure (Set.range S)) (MulEquiv.refl (FreeGroup (Fin n))) ?_⟩
-  simpa only [MulEquiv.coe_monoidHom_refl, Subgroup.map_id] using hN.symm
+  simpa only [MulEquiv.toMonoidHom_refl, Subgroup.map_id] using hN.symm
 
 /-! ## 3. Stabilization: the new generator is retracted away -/
 
@@ -134,7 +138,7 @@ theorem retractHom_of_g {n : ℕ} (g : Fin (n + 1)) :
 theorem retractHom_of_succAbove {n : ℕ} (g : Fin (n + 1)) (k : Fin n) :
     retractHom g (FreeGroup.of (g.succAbove k)) = FreeGroup.of k := by
   rw [retractHom, FreeGroup.lift_apply_of]
-  rw [dif_neg (Fin.succAbove_ne g k)]
+  rw [dite_eq_right (Fin.succAbove_ne g k)]
   congr 1
   exact Fin.succAbove_right_injective
     (Classical.choose_spec
@@ -144,7 +148,7 @@ theorem retractHom_of_succAbove {n : ℕ} (g : Fin (n + 1)) (k : Fin n) :
 theorem retractHom_map {n : ℕ} (g : Fin (n + 1)) (w : FreeGroup (Fin n)) :
     retractHom g (FreeGroup.map g.succAbove w) = w := by
   induction w using FreeGroup.induction_on with
-  | C1 => simp
+  | one => simp
   | of k => exact retractHom_of_succAbove g k
   | inv_of k _ => simp [retractHom_of_succAbove]
   | mul x y ihx ihy => rw [map_mul, map_mul, ihx, ihy]
@@ -156,7 +160,7 @@ theorem lift_comp_map {n : ℕ} {α : Type*} [Group α]
     FreeGroup.lift f (FreeGroup.map g.succAbove w) =
       FreeGroup.lift (fun k => f (g.succAbove k)) w := by
   induction w using FreeGroup.induction_on with
-  | C1 => simp
+  | one => simp
   | of k => simp
   | inv_of k _ => simp
   | mul x y ihx ihy => rw [map_mul, map_mul, ihx, ihy, map_mul]
@@ -324,8 +328,8 @@ theorem presentedGroupInvariant_cannot_separate {α : Type*} {I : Presentation �
     (hI : IsPresentedGroupInvariant I) :
     ¬ (I ⟨2, Ak3.ak3⟩ ≠ I ⟨2, standard 2⟩) := by
   intro h
-  haveI : Subsingleton (PresentedGroup (Set.range Ak3.ak3)) := Ak3.ak3_presentsTrivial
-  haveI : Subsingleton (PresentedGroup (Set.range (standard 2))) :=
+  have : Subsingleton (PresentedGroup (Set.range Ak3.ak3)) := Ak3.ak3_presentsTrivial
+  have : Subsingleton (PresentedGroup (Set.range (standard 2))) :=
     Base.presentsTrivialGroup_standard 2
   exact h (hI ⟨subsingletonMulEquiv _ _⟩)
 
@@ -387,21 +391,21 @@ theorem abelianizationTrivialInvariant_isStableInvariant :
 theorem abelianizationTrivialInvariant_ak3 :
     abelianizationTrivialInvariant ⟨2, Ak3.ak3⟩ = true := by
   unfold abelianizationTrivialInvariant
-  haveI : Subsingleton (PresentedGroup (Set.range Ak3.ak3)) := Ak3.ak3_presentsTrivial
-  haveI : Subsingleton (Abelianization (PresentedGroup (Set.range Ak3.ak3))) :=
+  have : Subsingleton (PresentedGroup (Set.range Ak3.ak3)) := Ak3.ak3_presentsTrivial
+  have : Subsingleton (Abelianization (PresentedGroup (Set.range Ak3.ak3))) :=
     subsingleton_abelianization
-  rw [if_pos (inferInstance :
+  rw [ite_eq_left (inferInstance :
     Subsingleton (Abelianization (PresentedGroup (Set.range Ak3.ak3))))]
 
 /-- The perfectness indicator is `true` at the standard rank-two presentation. -/
 theorem abelianizationTrivialInvariant_standard :
     abelianizationTrivialInvariant ⟨2, standard 2⟩ = true := by
   unfold abelianizationTrivialInvariant
-  haveI : Subsingleton (PresentedGroup (Set.range (standard 2))) :=
+  have : Subsingleton (PresentedGroup (Set.range (standard 2))) :=
     Base.presentsTrivialGroup_standard 2
-  haveI : Subsingleton (Abelianization (PresentedGroup (Set.range (standard 2)))) :=
+  have : Subsingleton (Abelianization (PresentedGroup (Set.range (standard 2)))) :=
     subsingleton_abelianization
-  rw [if_pos (inferInstance :
+  rw [ite_eq_left (inferInstance :
     Subsingleton (Abelianization (PresentedGroup (Set.range (standard 2)))))]
 
 /-- The perfectness indicator is constant on the AK(3) pair. -/

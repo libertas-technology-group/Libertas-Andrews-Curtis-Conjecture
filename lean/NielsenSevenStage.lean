@@ -1,3 +1,5 @@
+module
+
 /-
 # NielsenSevenStage — the concrete descent of the (5,7) witness
 
@@ -36,10 +38,12 @@ No `sorry`, `admit`, `axiom`, or `native_decide` is used.  The axiom record at
 the end reports the trusted base of the main theorem.
 -/
 
-import AcNielsenDefs
-import AcProof
-import NielsenRotationNormalForm
-import Mathlib.Tactic
+public import AcNielsenDefs
+public import AcProof
+public import NielsenRotationNormalForm
+public import Mathlib.Tactic
+
+@[expose] public section
 
 set_option autoImplicit false
 set_option maxHeartbeats 1000000

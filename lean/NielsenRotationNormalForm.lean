@@ -1,3 +1,5 @@
+module
+
 /-
 # NielsenRotationNormalForm — the rotation normal form of the (5,7) witness
 
@@ -31,9 +33,11 @@ The dependencies are `AcNielsenDefs` for `cycLen`, `cyclicNielsenLength`, and
 `sorry`, `admit`, `axiom`, or `native_decide` is used.
 -/
 
-import AcNielsenDefs
-import AcProof
-import Mathlib.Data.List.Rotate
+public import AcNielsenDefs
+public import AcProof
+public import Mathlib.Data.List.Rotate
+
+@[expose] public section
 
 set_option autoImplicit false
 
@@ -62,7 +66,7 @@ theorem reduceCyclically_eq_self {α : Type*} [DecidableEq α] {L : List (α × 
         have hb2 : b.2 = a.2 :=
           (FreeGroup.isCyclicallyReduced_cons_append_iff.mp h').2 hba
         cases hb : b.2 <;> cases ha : a.2 <;> simp_all
-      rw [if_neg hcond, List.cons_append]
+      rw [ite_eq_right hcond, List.cons_append]
 
 /-! ## 2. A cyclic rotation of a cyclically reduced list is cyclically reduced -/
 

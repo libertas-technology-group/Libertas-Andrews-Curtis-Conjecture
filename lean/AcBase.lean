@@ -1,4 +1,8 @@
-import AC
+module
+
+public import AC
+
+@[expose] public section
 
 /-!
 # The standard relator tuple presents the trivial group

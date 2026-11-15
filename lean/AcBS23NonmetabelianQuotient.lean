@@ -1,5 +1,9 @@
-import Ak3OrbitSeparation
-import BranchC3
+module
+
+public import Ak3OrbitSeparation
+public import BranchC3
+
+@[expose] public section
 
 /-!
 # AcBS23NonmetabelianQuotient — the non-metabelian quotient target
@@ -75,7 +79,7 @@ theorem nonmetabelianQuotientSeparation_iff_bs23OrbitSeparation :
   · intro hsep
     refine ⟨BS23, inferInstance, MonoidHom.id BS23, ?_⟩
     intro hstep
-    exact hsep (Or.inl (by simpa [mapPair] using hstep))
+    exact hsep (Or.inl (by simpa [mapPair, bs23Tuple, standard] using hstep))
 
 end BS23Nonmetabelian
 end AC

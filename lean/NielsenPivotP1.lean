@@ -1,3 +1,5 @@
+module
+
 /-
 # NielsenPivotP1 — the measure-14 pivot reaches the classical P1 witness
 
@@ -31,8 +33,10 @@ certifies an unproved goal.
 No `sorry`, `admit`, `axiom`, or `native_decide` occurs in this file.
 -/
 
-import AcNielsen
-import Mathlib.Tactic
+public import AcNielsen
+public import Mathlib.Tactic
+
+@[expose] public section
 
 set_option autoImplicit false
 set_option maxHeartbeats 1000000

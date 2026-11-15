@@ -19,9 +19,9 @@ Expected:
 
 .. code-block:: text
 
-   Build completed successfully (3373 jobs).
+   Build completed successfully (3186 jobs).
 
-The toolchain is Lean ``4.29.1``. The Mathlib revision is ``5e932f97dd25535344f80f9dd8da3aab83df0fe6``. The library target is ``AcCorpus``, declared in ``lean/lakefile.toml``.
+The toolchain is Lean ``4.35.0-rc2``. The Mathlib revision is ``065356127b1dc0016f66b7283ce0ce2c4055aa55``. The library target is ``AcCorpus``, declared in ``lean/lakefile.toml``.
 
 Axiom checks
 ------------

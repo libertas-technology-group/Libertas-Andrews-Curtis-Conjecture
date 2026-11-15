@@ -1,4 +1,8 @@
-import Ak3OrbitSeparation
+module
+
+public import Ak3OrbitSeparation
+
+@[expose] public section
 
 /-!
 # AcBS23BrittonOracle — the Britton conjugacy target

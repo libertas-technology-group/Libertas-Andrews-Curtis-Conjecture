@@ -1,9 +1,13 @@
-import AC
-import Mathlib.GroupTheory.CoprodI
-import Mathlib.Data.ZMod.Basic
-import Mathlib.Algebra.Group.TypeTags.Basic
-import Mathlib.Algebra.Group.Subgroup.Basic
-import Mathlib.Tactic
+module
+
+public import AC
+public import Mathlib.GroupTheory.CoprodI
+public import Mathlib.Data.ZMod.Basic
+public import Mathlib.Algebra.Group.TypeTags.Basic
+public import Mathlib.Algebra.Group.Subgroup.Basic
+public import Mathlib.Tactic
+
+@[expose] public section
 
 /-!
 # Branch C3: the PSL(2,ℤ) orbit test
@@ -59,6 +63,7 @@ namespace BranchC3
 
 /-- The two factors of `PSL(2,ℤ)`, indexed so that `true` is the order-two
 factor and `false` the order-three factor. -/
+@[reducible]
 def pslFactor : Bool → Type
   | true => Multiplicative (ZMod 2)
   | false => Multiplicative (ZMod 3)
@@ -86,22 +91,30 @@ def b : PSL :=
 /-- `a` has order two. -/
 theorem a_sq : a ^ 2 = 1 := by
   unfold a
-  rw [← map_pow]
-  have h : (Multiplicative.ofAdd (1 : ZMod 2)) ^ 2 = 1 := by
+  have hp : Monoid.CoprodI.of (M := pslFactor) (i := true)
+    ((Multiplicative.ofAdd (1 : ZMod 2)) ^ 2)
+    = Monoid.CoprodI.of (M := pslFactor) (i := true)
+    (Multiplicative.ofAdd (1 : ZMod 2)) ^ 2 :=
+    map_pow (Monoid.CoprodI.of (M := pslFactor) (i := true)) _ 2
+  have h0 : (Multiplicative.ofAdd (1 : ZMod 2)) ^ 2 = 1 := by
     rw [← ofAdd_nsmul]
     norm_num
     decide
-  exact (congrArg (Monoid.CoprodI.of (M := pslFactor) (i := true)) h).trans (map_one _)
+  exact hp.symm.trans (h0 ▸ map_one _)
 
 /-- `b` has order three. -/
 theorem b_cube : b ^ 3 = 1 := by
   unfold b
-  rw [← map_pow]
-  have h : (Multiplicative.ofAdd (1 : ZMod 3)) ^ 3 = 1 := by
+  have hp : Monoid.CoprodI.of (M := pslFactor) (i := false)
+    ((Multiplicative.ofAdd (1 : ZMod 3)) ^ 3)
+    = Monoid.CoprodI.of (M := pslFactor) (i := false)
+    (Multiplicative.ofAdd (1 : ZMod 3)) ^ 3 :=
+    map_pow (Monoid.CoprodI.of (M := pslFactor) (i := false)) _ 3
+  have h0 : (Multiplicative.ofAdd (1 : ZMod 3)) ^ 3 = 1 := by
     rw [← ofAdd_nsmul]
     norm_num
     decide
-  exact (congrArg (Monoid.CoprodI.of (M := pslFactor) (i := false)) h).trans (map_one _)
+  exact hp.symm.trans (h0 ▸ map_one _)
 
 /-- The quotient map `F₂ → PSL(2,ℤ)` sending `x` to `a` and `y` to `b`. -/
 noncomputable def pslMap : Word 2 →* PSL :=
@@ -315,16 +328,19 @@ theorem step_psl {P Q : Relators 2} (h : Step P Q) :
   cases h with
   | inv i =>
       rw [tuplePSL_update, map_inv]
-      simpa only [pairGet_tuplePSL] using
-        (Relation.ReflTransGen.single (GroupACStep.inv (tuplePSL P) i))
+      refine Relation.ReflTransGen.single ?_
+      rw [← pairGet_tuplePSL]
+      exact GroupACStep.inv (tuplePSL P) i
   | mulRight i j hij =>
       rw [tuplePSL_update, map_mul]
-      simpa only [pairGet_tuplePSL] using
-        (Relation.ReflTransGen.single (GroupACStep.mulRight (tuplePSL P) i j hij))
+      refine Relation.ReflTransGen.single ?_
+      rw [← pairGet_tuplePSL, ← pairGet_tuplePSL]
+      exact GroupACStep.mulRight (tuplePSL P) i j hij
   | conj i w =>
-      rw [tuplePSL_update]
-      simpa only [map_mul, map_inv, pairGet_tuplePSL] using
-        (Relation.ReflTransGen.single (GroupACStep.conj (tuplePSL P) i (pslMap w)))
+      rw [tuplePSL_update, map_mul, map_inv, map_mul]
+      refine Relation.ReflTransGen.single ?_
+      rw [← pairGet_tuplePSL]
+      exact GroupACStep.conj (tuplePSL P) i (pslMap w)
 
 /-- A whole AC path lifts to the quotient. -/
 theorem reachable_psl {P Q : Relators 2} (h : Reachable P Q) :

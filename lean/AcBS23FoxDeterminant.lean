@@ -1,5 +1,9 @@
-import Ak3OrbitSeparation
-import Mathlib.Algebra.MonoidAlgebra.Basic
+module
+
+public import Ak3OrbitSeparation
+public import Mathlib.Algebra.MonoidAlgebra.Basic
+
+@[expose] public section
 
 /-!
 # AcBS23FoxDeterminant — the Fox determinant in the BS(2,3) group ring
@@ -18,7 +22,7 @@ open Ak3OrbitSeparation
 
 /-- The group-ring monomial of a free-group word after the map to BS(2,3). -/
 noncomputable def q (w : Word 2) : MonoidAlgebra ℤ BS23 :=
-  Finsupp.single (bs23Map w) (1 : ℤ)
+  MonoidAlgebra.single (bs23Map w) (1 : ℤ)
 
 /-- The 21-term Fox determinant after the quotient map. -/
 noncomputable def foxDeterminantQuotient : MonoidAlgebra ℤ BS23 :=
@@ -71,11 +75,7 @@ noncomputable def signChar : BS23 →* ℤˣ :=
 
 @[simp] theorem signChar_bs23Map (w : Word 2) :
     signChar (bs23Map w) = FreeGroup.lift signGenerators w := by
-  unfold signChar bs23Map PresentedGroup.toGroup PresentedGroup.mk
-  change (QuotientGroup.lift (Subgroup.normalClosure bs23Rels)
-      (FreeGroup.lift signGenerators) _) (QuotientGroup.mk w) =
-    (FreeGroup.lift signGenerators) w
-  rw [QuotientGroup.lift_mk]
+  rfl
 
 /-- The ring hom from the group ring to `ℤ` induced by the sign character. -/
 noncomputable def signEval : MonoidAlgebra ℤ BS23 →+* ℤ :=
@@ -89,7 +89,6 @@ noncomputable def signEval : MonoidAlgebra ℤ BS23 →+* ℤ :=
 theorem foxDeterminant_eval : signEval foxDeterminantQuotient = 3 := by
   simp [foxDeterminantQuotient, signEval_q, signChar_bs23Map, signGenerators,
     FreeGroup.lift_apply_of]
-  decide
 
 /-- The unit claim is false because a ring hom sends a unit to a unit, while
 the sign evaluation is `3`, which is not a unit in the integers. -/

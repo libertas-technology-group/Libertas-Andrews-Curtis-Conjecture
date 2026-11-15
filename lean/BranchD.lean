@@ -1,5 +1,9 @@
-import AC
-import AcMove
+module
+
+public import AC
+public import AcMove
+
+@[expose] public section
 
 /-!
 # Branch D — the stable Andrews–Curtis route

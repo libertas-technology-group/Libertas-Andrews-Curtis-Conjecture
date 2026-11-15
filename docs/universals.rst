@@ -25,31 +25,31 @@ Each law below is proved, and each declaration is named so a reader can open the
       - Status
     * - Relation-subgroup collapse
       - a presentation of the trivial group has the whole free group as the normal closure of its relators
-      - ``AC.RelationCollapse.relationSubgroup_eq_top`` (``lean/AcRelationModuleCollapse.lean:29``)
+      - ``AC.RelationCollapse.relationSubgroup_eq_top`` (``lean/AcRelationModuleCollapse.lean:33``)
       - proved
     * - Exponent span
       - on that class the exponent span of the relators is the whole lattice
-      - ``AC.Invariant.expSpan_eq_top_of_presents`` (``lean/AcInvariant.lean:243``)
+      - ``AC.Invariant.expSpan_eq_top_of_presents`` (``lean/AcInvariant.lean:247``)
       - proved
     * - Relation module
       - on that class the relation module is the exponent-vector group
-      - ``AC.RelationCollapse.relationModule_equiv_expVec`` (``lean/AcWindingCollapse.lean:92``)
+      - ``AC.RelationCollapse.relationModule_equiv_expVec`` (``lean/AcWindingCollapse.lean:96``)
       - proved
     * - Separation
       - no invariant through that module separates an AC-equivalent pair
-      - ``AC.RelationCollapse.relationModuleInvariant_cannot_separate`` (``lean/AcRelationModuleCollapse.lean:61``)
+      - ``AC.RelationCollapse.relationModuleInvariant_cannot_separate`` (``lean/AcRelationModuleCollapse.lean:65``)
       - proved
     * - Signed row law
       - under each move the determinant of the exponent matrix changes by at most a sign
-      - ``AC.EuclidGeneral.expMatrix_det_step`` (``lean/AcExpMatrixLaw.lean:46``)
+      - ``AC.EuclidGeneral.expMatrix_det_step`` (``lean/AcExpMatrixLaw.lean:51``)
       - proved
     * - Span stability
       - insertion and deletion preserve whether the span is the whole lattice
-      - ``AC.StabilityTransport.stableStep_expSpan_top`` (``lean/AcStabilityTransport.lean:219``)
+      - ``AC.StabilityTransport.stableStep_expSpan_top`` (``lean/AcStabilityTransport.lean:223``)
       - proved
     * - Detour impossibility
       - no function of graph distance returns the detour width
-      - ``AC.DetourWidth.detourWidth_independent_of_graphDist`` (``lean/AcDetourWidth.lean:262``)
+      - ``AC.DetourWidth.detourWidth_independent_of_graphDist`` (``lean/AcDetourWidth.lean:266``)
       - proved
     * - Power family
       - ``(x·yⁿ, y)`` reaches the standard pair for every n
@@ -61,11 +61,11 @@ Each law below is proved, and each declaration is named so a reader can open the
       - proved
     * - Finite-quotient blindness
       - no finite quotient separates
-      - ``AC.Ak3Invariant.finiteQuotient_cannot_separate`` (``lean/Ak3Invariant.lean:302``)
+      - ``AC.Ak3Invariant.finiteQuotient_cannot_separate`` (``lean/Ak3Invariant.lean:306``)
       - proved
     * - Energy barrier
       - no positive measure decreases under every single move
-      - ``AC.Invariant.no_strictly_decreasing_measure`` (``lean/AcInvariant.lean:212``)
+      - ``AC.Invariant.no_strictly_decreasing_measure`` (``lean/AcInvariant.lean:216``)
       - proved
 
 Open hypotheses
@@ -83,11 +83,11 @@ The two statements below are propositions of type Prop and carry no proof.
       - Status
     * - High-measure descent
       - every tuple above the high-measure threshold descends
-      - ``HighMeasureDescent`` (``lean/NielsenSliceBridge.lean:69``)
+      - ``HighMeasureDescent`` (``lean/NielsenSliceBridge.lean:73``)
       - **open hypothesis**
     * - Tail-minimal form
       - every class reaches a tail-minimal normal form
-      - ``TailMinimalStatement`` (``lean/AcA8TailMinimal.lean:551``)
+      - ``TailMinimalStatement`` (``lean/AcA8TailMinimal.lean:555``)
       - **open hypothesis**
 
 The registry entry

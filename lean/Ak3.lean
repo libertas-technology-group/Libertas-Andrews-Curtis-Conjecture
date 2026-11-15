@@ -1,5 +1,9 @@
-import AC
-import Mathlib.Tactic
+module
+
+public import AC
+public import Mathlib.Tactic
+
+@[expose] public section
 
 /-!
 # The Akbulut–Kirby AK(3) presentation
@@ -39,17 +43,16 @@ theorem ak3_presentsTrivial : PresentsTrivialGroup ak3 := by
   refine ⟨fun x y => ?_⟩
   let a : PresentedGroup (Set.range ak3) := PresentedGroup.of 0
   let b : PresentedGroup (Set.range ak3) := PresentedGroup.of 1
-  have h1 : a ^ 3 * b ^ (-4 : ℤ) = 1 := by
+  have h1 : a ^ 3 * (b ^ 4)⁻¹ = 1 := by
     have hm : PresentedGroup.mk (Set.range ak3) (ak3 0) = 1 :=
       PresentedGroup.one_of_mem (Set.mem_range_self (0 : Fin 2))
-    simpa [ak3, ak3R1, a, b, PresentedGroup.of] using hm
+    exact hm
   have h2 : a * b * a * b⁻¹ * a⁻¹ * b⁻¹ = 1 := by
     have hm : PresentedGroup.mk (Set.range ak3) (ak3 1) = 1 :=
       PresentedGroup.one_of_mem (Set.mem_range_self (1 : Fin 2))
-    simpa [ak3, ak3R2, a, b, PresentedGroup.of] using hm
+    exact hm
   have hA : a ^ 3 = b ^ 4 := by
-    have h1' : a ^ 3 * (b ^ 4)⁻¹ = 1 := by simpa using h1
-    exact eq_of_mul_inv_eq_one h1'
+    exact eq_of_mul_inv_eq_one h1
   have hB : a * b * a = b * a * b := by
     calc a * b * a = (a * b * a * b⁻¹ * a⁻¹ * b⁻¹) * (b * a * b) := by group
       _ = 1 * (b * a * b) := by rw [h2]

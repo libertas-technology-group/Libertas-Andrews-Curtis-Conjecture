@@ -1,4 +1,8 @@
-import AcTailDefs
+module
+
+public import AcTailDefs
+
+@[expose] public section
 
 /-!
 # AcMagnusCounterexample — the negation of the multiplier-core descent statement

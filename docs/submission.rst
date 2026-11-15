@@ -52,7 +52,7 @@ The description field, verbatim:
    Stable AC with the projection principle, a second-order universal barrier quantified
    over every natural-valued measure, and an eleven-law universal composite governing
    the Andrews–Curtis space at every rank. One elementary corollary — the winding-domain
-   emptiness at lean/BranchC.lean:171 — coincides with a single lemma independently
+   emptiness at lean/BranchC.lean:175 — coincides with a single lemma independently
    proved via a different route by Pragyaan Gaur (not_cocommutative_of_subsingleton,
    filed 7 November 2026, github.com/pragyaangaur/Andrews-Curtis-Conjecture), which we
    cite with attribution.
@@ -60,12 +60,12 @@ The description field, verbatim:
    What is established.
    (1) A kernel-checked general-rank reduction: the ordinary Andrews–Curtis conjecture
    is equivalent to a single statement about abelian-terminal presentations
-   (Conjecture ↔ A8, lean/AcFinal.lean:54), with Euclidean matrix reduction discharged
-   at rank two (lean/AcEuclid.lean:338) and general rank (lean/AcEuclidGeneral.lean:849),
-   and pivot rank-reduction proved at lean/AcRankReduction.lean:314. The remaining
+   (Conjecture ↔ A8, lean/AcFinal.lean:58), with Euclidean matrix reduction discharged
+   at rank two (lean/AcEuclid.lean:342) and general rank (lean/AcEuclidGeneral.lean:857),
+   and pivot rank-reduction proved at lean/AcRankReduction.lean:318. The remaining
    non-abelian work is concentrated into two named open inputs at fixed file-and-line
-   locations: HighMeasureDescent (lean/NielsenSliceBridge.lean:69) and
-   measure12_ordered_classification (lean/NielsenMeasure12Cover.lean:200).
+   locations: HighMeasureDescent (lean/NielsenSliceBridge.lean:73) and
+   measure12_ordered_classification (lean/NielsenMeasure12Cover.lean:204).
    (2) Eleven kernel-verified universal laws over the space of balanced presentations,
    each holding at every rank and for every tuple: relation-subgroup collapse
    (lean/AcRelationModuleCollapse.lean), exponent span (lean/AcInvariant.lean),
@@ -81,9 +81,9 @@ The description field, verbatim:
    repository proves that the stable move grammar generates the official StableStep
    relation, establishes rank accounting and the standard-tuple ↔ empty-presentation
    equivalence, proves stabilize invariance and the implication
-   AC.Conjecture → AC.StableConjecture (lean/AC.lean:141), and establishes the
+   AC.Conjecture → AC.StableConjecture (lean/AC.lean:145), and establishes the
    reduction AC.Conjecture ↔ AC.StableConjecture ∧ projection principle
-   (lean/BranchD.lean:282), isolating the stable projection principle as the named
+   (lean/BranchD.lean:286), isolating the stable projection principle as the named
    residual obligation.
 
    What remains open. The conjecture itself. The two primitive propositions named
@@ -128,9 +128,9 @@ The description field, verbatim:
    ("supermoves") to navigate the presentation graph, our Cognitive World Model
    compressed the state space deductively across all ranks — discharging general-rank
    Euclidean reduction (lean/AcEuclidGeneral.lean) to concentrate the entire conjecture
-   into abelian-terminal presentations (Conjecture ↔ A8, lean/AcFinal.lean:54) and
+   into abelian-terminal presentations (Conjecture ↔ A8, lean/AcFinal.lean:58) and
    reducing AC to Stable AC together with the stable projection principle
-   (lean/BranchD.lean:282).
+   (lean/BranchD.lean:286).
 
    Provenance. We thank Lucas Fagan, Sergei Gukov, Terence Tao, Caltech, and the SAIR
    Foundation for organizing this challenge and providing the shared formal definitions.
@@ -144,7 +144,7 @@ The description field, verbatim:
    observation that a presentation of the trivial group at positive rank is not
    cocommutative. His route goes through unit exponent sums; ours goes through the
    exponent-span lattice laws (expSpan_eq_bot_of_cocommutative and
-   expSpan_eq_top_of_presents) at lean/BranchC.lean:171. Beyond that shared corollary,
+   expSpan_eq_top_of_presents) at lean/BranchC.lean:175. Beyond that shared corollary,
    to our knowledge no prior public entry states a second-order universal law over
    every measure, formalizes an eleven-law universal composite, or establishes the
    general-rank reduction of the conjecture in Lean 4.
@@ -170,13 +170,26 @@ on the challenge module at every verification run.
    * - Registry artifact
      - This repository
    * - Challenge file, Mathlib-only imports, capped
-     - ``Challenge.lean``, statements only, 163 lines
+     - ``Challenge.lean``, statements only, 167 lines
    * - Solution module proving the challenge claims
      - ``Solution.lean``, no sorry and no user axiom
    * - Registry configuration
      - ``comparator.json``
    * - Informal description and disclosures
      - ``formalization.yaml``
+
+The v0.1.1 module-system port
+-----------------------------
+
+Release ``v0.1.1`` moves the development from Lean ``4.29.1`` to
+``leanprover/lean4:v4.35.0-rc2`` and adds the module header to every submitted
+Lean source file: the bare ``module`` keyword, ``public import`` for every
+dependency, and ``@[expose] public section`` around each body. All 83 Lean files
+carry the header, the eleven modules that the toolchain change broke were
+repaired without a statement edit, and the theorem declarations are identical to
+``v0.1.0``. The corpus verifies at 81 modules, 1,553 declarations, 783 theorems
+and 189 lemmas with zero ``sorry`` and the three standard axioms. The filed SAIR
+description above is the text submitted at ``v0.1.0`` and is preserved verbatim.
 
 The registry reads the public title and abstract from the ``project`` block of
 ``formalization.yaml``. The current fields, verbatim:

@@ -1,4 +1,8 @@
-import AcTailDefs
+module
+
+public import AcTailDefs
+
+@[expose] public section
 
 /-!
 # AcTailExpVec — the exponent vector of a conjugate product

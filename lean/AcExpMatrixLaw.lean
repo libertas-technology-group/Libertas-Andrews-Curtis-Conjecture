@@ -1,3 +1,5 @@
+module
+
 /-
   The exponent-matrix move law, at every rank.
 
@@ -13,7 +15,9 @@
     invariant-ideas/idea.md:180-196  (MIT licence, Copyright 2026 Pragyaan Gaur)
   No code or proof text is copied from that repository.
 -/
-import AcEuclidGeneral
+public import AcEuclidGeneral
+
+@[expose] public section
 
 namespace AC.EuclidGeneral
 
@@ -24,7 +28,8 @@ the fourth and last per-move row law. -/
 lemma expMatrix_conj (R : Relators n) (i : Fin n) (w : Word n) :
     expMatrix (Function.update R i (w * R i * w⁻¹)) = expMatrix R := by
   rw [expMatrix_update, Invariant.expVec_conj]
-  rw [show Invariant.expVec (R i) = (expMatrix R) i from rfl, Function.update_eq_self]
+  rw [show Invariant.expVec (R i) = (expMatrix R) i from rfl]
+  exact Function.update_eq_self i (expMatrix R)
 
 /-- Row addition leaves the determinant fixed, provided the two rows differ. -/
 lemma expMatrix_det_rowAdd (R : Relators n) (i j : Fin n) (hij : i ≠ j) (c : ℤ) :

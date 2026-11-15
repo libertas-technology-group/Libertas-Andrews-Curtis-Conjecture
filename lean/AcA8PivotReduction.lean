@@ -1,6 +1,10 @@
-import AcA8Reachability
-import Mathlib.Algebra.BigOperators.Group.Finset.Basic
-import Mathlib.Data.List.Basic
+module
+
+public import AcA8Reachability
+public import Mathlib.Algebra.BigOperators.Group.Finset.Basic
+public import Mathlib.Data.List.Basic
+
+@[expose] public section
 
 /-!
 # AcA8PivotReduction — pivot reduction for the A8 route
@@ -92,7 +96,7 @@ lemma totalLength_update_delete_letter_lt (R : Relators n) {i j g : Fin n}
     simp [newLen]
   have hsumR : totalLength R = oldLen + rest := by
     dsimp [totalLength, rest, oldLen]
-    rw [Finset.sum_eq_add_sum_diff_singleton_of_mem (Finset.mem_univ j)]
+    rw [Finset.sum_eq_add_sum_sdiff_singleton_of_mem (Finset.mem_univ j)]
   rw [hsumS, hsumR]
   omega
 

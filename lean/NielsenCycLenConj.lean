@@ -1,3 +1,5 @@
+module
+
 /-
 # Conjugacy invariance of the cyclic Nielsen length
 
@@ -18,8 +20,10 @@ formula at exponents one and two, together with `FreeGroup.norm_inv_eq`.
 The development carries no placeholders and no user-declared assumptions.
 -/
 
-import AcNielsenDefs
-import Mathlib.GroupTheory.FreeGroup.CyclicallyReduced
+public import AcNielsenDefs
+public import Mathlib.GroupTheory.FreeGroup.CyclicallyReduced
+
+@[expose] public section
 
 set_option autoImplicit false
 
@@ -36,7 +40,7 @@ theorem norm_pow_eq (x : Word n) {m : ℕ} (hm : 1 ≤ m) :
       2 * (FreeGroup.reduceCyclically.conjugator x.toWord).length + m * cycLen x := by
   rw [FreeGroup.norm, FreeGroup.toWord_pow]
   rw [FreeGroup.reduceCyclically.reduce_flatten_replicate FreeGroup.isReduced_toWord m]
-  rw [if_neg (by omega : ¬ m = 0)]
+  rw [ite_eq_right (by omega : ¬ m = 0)]
   unfold cycLen
   simp only [List.length_append, List.length_flatten, List.map_replicate,
     List.sum_replicate, FreeGroup.invRev_length]

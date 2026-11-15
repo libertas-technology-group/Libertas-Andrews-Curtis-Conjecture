@@ -1,4 +1,8 @@
-import AC
+module
+
+public import AC
+
+@[expose] public section
 
 /-!
 # Move grammar for the Andrews–Curtis relation

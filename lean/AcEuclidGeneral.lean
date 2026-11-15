@@ -1,12 +1,16 @@
-import AC
-import AcInvariant
-import AcProof
-import AcInduction
-import Mathlib.LinearAlgebra.Matrix.Determinant.Basic
-import Mathlib.LinearAlgebra.Finsupp.LinearCombination
-import Mathlib.Data.Int.Order.Units
-import Mathlib.Tactic.Ring
-import Mathlib.Tactic.Linarith
+module
+
+public import AC
+public import AcInvariant
+public import AcProof
+public import AcInduction
+public import Mathlib.LinearAlgebra.Matrix.Determinant.Basic
+public import Mathlib.LinearAlgebra.Finsupp.LinearCombination
+public import Mathlib.Data.Int.Order.Units
+public import Mathlib.Tactic.Ring
+public import Mathlib.Tactic.Linarith
+
+@[expose] public section
 
 /-!
 # General-rank A7: abelian-terminal reachability from a top exponent span
@@ -53,32 +57,32 @@ def rowSwap (M : Matrix (Fin m) (Fin k) ℤ) (i j : Fin m) : Matrix (Fin m) (Fin
 
 @[simp] lemma rowAdd_self (M : Matrix (Fin m) (Fin k) ℤ) (i j : Fin m) (c : ℤ) :
     rowAdd M i j c i = M i + c • M j := by
-  simp [rowAdd]
+  simp [rowAdd, Function.update]
 
 lemma rowAdd_of_ne (M : Matrix (Fin m) (Fin k) ℤ) (i j r : Fin m) (hr : r ≠ i) (c : ℤ) :
     rowAdd M i j c r = M r := by
-  simp [rowAdd, hr]
+  simp [rowAdd, Function.update, hr]
 
 @[simp] lemma rowNeg_self (M : Matrix (Fin m) (Fin k) ℤ) (i : Fin m) :
     rowNeg M i i = -(M i) := by
-  simp [rowNeg]
+  simp [rowNeg, Function.update]
 
 lemma rowNeg_of_ne (M : Matrix (Fin m) (Fin k) ℤ) (i r : Fin m) (hr : r ≠ i) :
     rowNeg M i r = M r := by
-  simp [rowNeg, hr]
+  simp [rowNeg, Function.update, hr]
 
 lemma rowSwap_left (M : Matrix (Fin m) (Fin k) ℤ) (i j : Fin m) (hij : i ≠ j) :
     rowSwap M i j i = M j := by
-  simp [rowSwap, hij]
+  simp [rowSwap, Function.update, hij]
 
 @[simp] lemma rowSwap_right (M : Matrix (Fin m) (Fin k) ℤ) (i j : Fin m) :
     rowSwap M i j j = M i := by
-  simp [rowSwap]
+  simp [rowSwap, Function.update]
 
 lemma rowSwap_of_ne (M : Matrix (Fin m) (Fin k) ℤ) (i j r : Fin m)
     (hri : r ≠ i) (hrj : r ≠ j) :
     rowSwap M i j r = M r := by
-  simp [rowSwap, hri, hrj]
+  simp [rowSwap, Function.update, hri, hrj]
 
 /-! ## 2. The row-step relation and the row span -/
 
@@ -207,24 +211,24 @@ lemma expMatrix_update (R : Relators n) (i : Fin n) (w : Word n) :
   funext r s
   by_cases hr : r = i
   · rw [hr]
-    simp [expMatrix]
-  · simp [expMatrix, hr]
+    simp [expMatrix, Function.update]
+  · simp [expMatrix, Function.update, hr]
 
 lemma expMatrix_rowAdd (R : Relators n) (i j : Fin n) (c : ℤ) :
     expMatrix (Function.update R i (R i * R j ^ c)) = rowAdd (expMatrix R) i j c := by
   funext r s
   by_cases hr : r = i
   · rw [hr]
-    simp [expMatrix, rowAdd, expVec_mul, expVec_zpow_general, Pi.add_apply]
-  · simp [expMatrix, rowAdd, hr]
+    simp [expMatrix, rowAdd, expVec_mul, expVec_zpow_general, Pi.add_apply, Function.update]
+  · simp [expMatrix, rowAdd, hr, Function.update]
 
 lemma expMatrix_rowNeg (R : Relators n) (i : Fin n) :
     expMatrix (Function.update R i (R i)⁻¹) = rowNeg (expMatrix R) i := by
   funext r s
   by_cases hr : r = i
   · rw [hr]
-    simp [expMatrix, rowNeg, expVec_inv]
-  · simp [expMatrix, rowNeg, hr]
+    simp [expMatrix, rowNeg, expVec_inv, Function.update]
+  · simp [expMatrix, rowNeg, hr, Function.update]
 
 lemma expMatrix_rowSwap (R : Relators n) (i j : Fin n) :
     expMatrix (Function.update (Function.update R i (R j)) j (R i)) =
@@ -234,25 +238,25 @@ lemma expMatrix_rowSwap (R : Relators n) (i j : Fin n) :
   · rw [hri]
     by_cases hij : i = j
     · rw [hij]
-      simp [expMatrix, rowSwap]
-    · simp [expMatrix, rowSwap, Function.update_of_ne hij]
+      simp [expMatrix, rowSwap, Function.update]
+    · simp [expMatrix, rowSwap, Function.update, hij]
   · by_cases hrj : r = j
     · rw [hrj]
-      simp [expMatrix, rowSwap]
-    · simp [expMatrix, rowSwap, hri, hrj]
+      simp [expMatrix, rowSwap, Function.update]
+    · simp [expMatrix, rowSwap, hri, hrj, Function.update]
 
 /-! ## 4. Row addition with an integer multiplier is reachable -/
 
 lemma row_mul_pow_reachable_general (R : Relators n) (i j : Fin n) (hij : i ≠ j) (p : ℕ) :
     Reachable R (Function.update R i (R i * R j ^ p)) := by
   induction p with
-  | zero => simpa using (Relation.ReflTransGen.refl : Reachable R R)
+  | zero => simpa [Reachable, Function.update] using (Relation.ReflTransGen.refl : Reachable R R)
   | succ p ih =>
       have hstep : Reachable (Function.update R i (R i * R j ^ p))
           (Function.update R i (R i * R j ^ (p + 1))) := by
         refine Relation.ReflTransGen.single ?_
         have hs := Step.mulRight (Function.update R i (R i * R j ^ p)) i j hij
-        have e1 : (Function.update R i (R i * R j ^ p)) i = R i * R j ^ p := by simp
+        have e1 : (Function.update R i (R i * R j ^ p)) i = R i * R j ^ p := by simp [Function.update]
         have e2 : (Function.update R i (R i * R j ^ p)) j = R j := by
           simp [Function.update_of_ne (Ne.symm hij)]
         rw [e1, e2] at hs
@@ -512,8 +516,8 @@ lemma rowSpan_submatrix_succ {n : ℕ} (M : Matrix (Fin (n + 1)) (Fin (n + 1)) �
   have hmem : (Fin.cons (0 : ℤ) w : Fin (n + 1) → ℤ) ∈ rowSpan M := by
     rw [hspan]
     exact Submodule.mem_top
-  rw [rowSpan, Submodule.mem_span_range_iff_exists_fun] at hmem
-  obtain ⟨c, hc⟩ := hmem
+  obtain ⟨c, hc⟩ := (Submodule.mem_span_range_iff_exists_fun (R := ℤ)
+    (v := fun i : Fin (n + 1) => M i)).mp (by simpa [rowSpan] using hmem)
   have hcoord0 : c 0 * d = 0 := by
     have h := congrFun hc 0
     simpa [Fin.sum_univ_succ, h00, hzero, Pi.smul_apply, Finset.sum_apply, smul_eq_mul] using h
@@ -521,8 +525,10 @@ lemma rowSpan_submatrix_succ {n : ℕ} (M : Matrix (Fin (n + 1)) (Fin (n + 1)) �
     rcases mul_eq_zero.mp hcoord0 with h | h
     · exact h
     · exact absurd h hd
-  rw [rowSpan]
-  refine (Submodule.mem_span_range_iff_exists_fun ℤ).mpr ⟨fun i : Fin n => c i.succ, ?_⟩
+  simp only [rowSpan]
+  refine (Submodule.mem_span_range_iff_exists_fun (R := ℤ)
+    (v := fun i : Fin n => fun j : Fin n => M i.succ j.succ)).mpr
+    ⟨fun i : Fin n => c i.succ, ?_⟩
   funext j
   have h := congrFun hc j.succ
   simpa [Fin.sum_univ_succ, hc0, Pi.smul_apply, Finset.sum_apply, smul_eq_mul] using h
@@ -564,13 +570,13 @@ lemma liftMat_update (r : Fin (n + 1) → ℤ) (N : Matrix (Fin n) (Fin n) ℤ)
     · rw [hb]
       by_cases hai : a' = i
       · rw [hai]
-        simp [liftMat]
-      · simp [liftMat, hai, Fin.succ_inj]
+        simp [liftMat, Function.update]
+      · simp [liftMat, Function.update, hai, Fin.succ_inj]
     · obtain ⟨b', rfl⟩ := Fin.eq_succ_of_ne_zero hb
       by_cases hai : a' = i
       · rw [hai]
-        simp [liftMat]
-      · simp [liftMat, hai, Fin.succ_inj]
+        simp [liftMat, Function.update]
+      · simp [liftMat, Function.update, hai, Fin.succ_inj]
 
 lemma finCons_zero_add_smul {n : ℕ} (u v : Fin n → ℤ) (c : ℤ) :
     (Fin.cons 0 (u + c • v) : Fin (n + 1) → ℤ) =
@@ -609,7 +615,9 @@ lemma liftMat_rowNeg (r : Fin (n + 1) → ℤ) (N : Matrix (Fin n) (Fin n) ℤ) 
 lemma liftMat_rowSwap (r : Fin (n + 1) → ℤ) (N : Matrix (Fin n) (Fin n) ℤ)
     (i j : Fin n) :
     liftMat r (rowSwap N i j) = rowSwap (liftMat r N) i.succ j.succ := by
-  rw [rowSwap, rowSwap, liftMat_update, liftMat_update]
+  rw [rowSwap, rowSwap]
+  rw [liftMat_update (N := Function.update N i (N j)) (i := j) (v := N i)]
+  rw [liftMat_update (N := N) (i := i) (v := N j)]
   rfl
 
 lemma liftMat_rowStep {N N' : Matrix (Fin n) (Fin n) ℤ} (h : RowStep N N')

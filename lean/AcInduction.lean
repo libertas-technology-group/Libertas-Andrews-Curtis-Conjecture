@@ -1,7 +1,11 @@
-import AC
-import AcInvariant
-import AcProof
-import AcEuclid
+module
+
+public import AC
+public import AcInvariant
+public import AcProof
+public import AcEuclid
+
+@[expose] public section
 
 /-!
 # Induction through the abelian terminal set

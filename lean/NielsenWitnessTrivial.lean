@@ -1,3 +1,5 @@
+module
+
 /-
 # NielsenWitnessTrivial — the (5,7) witness presents the trivial group
 
@@ -23,12 +25,14 @@ No `sorry`, `admit`, `axiom`, or `native_decide` occurs in this file. The axiom
 record at the end reports the trusted base.
 -/
 
-import AcNielsenDefs
-import AcProof
-import AcBase
-import NielsenRotationNormalForm
-import NielsenSevenStage
-import Mathlib.Tactic
+public import AcNielsenDefs
+public import AcProof
+public import AcBase
+public import NielsenRotationNormalForm
+public import NielsenSevenStage
+public import Mathlib.Tactic
+
+@[expose] public section
 
 set_option autoImplicit false
 

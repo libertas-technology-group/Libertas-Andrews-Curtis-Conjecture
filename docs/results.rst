@@ -22,75 +22,75 @@ The ordinary AC track
      - Status
    * - Official statement
      - ``AC.Conjecture``
-     - ``lean/AC.lean:55-57``
+     - ``lean/AC.lean:59-57``
      - Verified copy
    * - Move grammar
      - ``AC.Step``, ``AC.Reachable``
-     - ``lean/AC.lean:36-50``
+     - ``lean/AC.lean:40-50``
      - Exact
    * - G1 exponent span
      - ``AC.Invariant.expSpan_eq_top_of_presents``
-     - ``lean/AcInvariant.lean:243``
+     - ``lean/AcInvariant.lean:247``
      - Closed
    * - G3 signed permutations
      - ``AC.ProofAttempt.signedPermutation_reachable_standard``
-     - ``lean/AcProof.lean:338``
+     - ``lean/AcProof.lean:342``
      - Closed
    * - G4 triviality preservation
      - ``AC.ProofAttempt.presents_of_step``
-     - ``lean/AcProof.lean:483``
+     - ``lean/AcProof.lean:487``
      - Closed
    * - AC ↔ hterm
      - ``AC.ProofAttempt.conjecture_iff_terminal``
-     - ``lean/AcProof.lean:368``
+     - ``lean/AcProof.lean:372``
      - Closed
    * - Standard triviality
      - ``AC.Base.presentsTrivialGroup_standard``
-     - ``lean/AcBase.lean:30``
+     - ``lean/AcBase.lean:34``
      - Accepted
    * - Rank-two A7
      - ``AC.Euclid.abelianTerminal_reachable_of_expSpan_top``
-     - ``lean/AcEuclid.lean:338``
+     - ``lean/AcEuclid.lean:342``
      - Accepted
    * - A7-general
      - ``AC.EuclidGeneral.abelianTerminal_reachable_of_expSpan_top_general``
-     - ``lean/AcEuclidGeneral.lean:849``
+     - ``lean/AcEuclidGeneral.lean:857``
      - Accepted
    * - AK(3) triviality
      - ``AC.Ak3.ak3_presentsTrivial``
-     - ``lean/Ak3.lean:37``
+     - ``lean/Ak3.lean:41``
      - Accepted
    * - A9 rank reduction
      - ``AC.RankReduction.rankReduction``
-     - ``lean/AcRankReduction.lean:314``
+     - ``lean/AcRankReduction.lean:318``
      - Accepted
    * - A10 assembly
      - ``AC.Final.conjecture_iff_A8``
-     - ``lean/AcFinal.lean:54``
+     - ``lean/AcFinal.lean:58``
      - Accepted; A8 ↔ AC
    * - AK(3) PSL no-go
      - ``AC.Ak3Separation.pslIndexSeparation_false``
-     - ``lean/Ak3Separation.lean:248``
+     - ``lean/Ak3Separation.lean:252``
      - Pruned
    * - AK(3) invariant-family no-go
      - ``AC.Ak3Invariant.finiteQuotient_cannot_separate``; ``AC.Ak3Invariant.groupInvariant_ak3_eq_standard``
-     - ``lean/Ak3Invariant.lean:302``; ``:331``
+     - ``lean/Ak3Invariant.lean:306``; ``:331``
      - Pruned
    * - Quotient index
      - ``AC.Quotient.psl_index_separates``
-     - ``lean/AcQuotient.lean:124``
+     - ``lean/AcQuotient.lean:128``
      - Accepted
    * - Branch B determinant
      - ``AC.BranchB.expDeterminant_eq_pm_one_of_presents``
-     - ``lean/BranchB.lean:195``
+     - ``lean/BranchB.lean:199``
      - Closed
    * - Branch C cocommutativity
      - ``AC.BranchC.not_cocommutative_of_presents``
-     - ``lean/BranchC.lean:171``
+     - ``lean/BranchC.lean:175``
      - Closed
    * - Branch C winding domain
      - ``AC.BranchC.winding_domain_empty_on_trivial``
-     - ``lean/BranchC.lean:202``
+     - ``lean/BranchC.lean:206``
      - Closed
 
 The open input on this track is A8: every abelian-terminal trivial presentation reaches a signed permutation. ``AC.Final.conjecture_iff_A8`` proves that A8 is equivalent to ``AC.Conjecture``. The equivalence is a reduction of the target; it is not a proof of the target.
@@ -108,75 +108,75 @@ The Stable AC track
      - Status
    * - Stable statement
      - ``AC.StableConjecture``
-     - ``lean/AC.lean:110-112``
+     - ``lean/AC.lean:114-112``
      - Stated; open
    * - Stable move grammar
      - ``AC.BranchD.StableAcMove.stableStep_iff``
-     - ``lean/BranchD.lean:77``
+     - ``lean/BranchD.lean:81``
      - Closed
    * - Rank accounting
      - ``AC.BranchD.rankOf_stableStep``
-     - ``lean/BranchD.lean:102``
+     - ``lean/BranchD.lean:106``
      - Closed
    * - Standard to empty
      - ``AC.BranchD.standard_stableReachable_empty``
-     - ``lean/BranchD.lean:160``
+     - ``lean/BranchD.lean:164``
      - Closed
    * - Empty to standard
      - ``AC.BranchD.empty_stableReachable_standard``
-     - ``lean/BranchD.lean:174``
+     - ``lean/BranchD.lean:178``
      - Closed
    * - Terminal equivalence
      - ``AC.BranchD.stableReachable_standard_iff_empty``
-     - ``lean/BranchD.lean:192``
+     - ``lean/BranchD.lean:196``
      - Closed
    * - Empty-terminal form
      - ``AC.BranchD.stableConjecture_iff_empty_terminal``
-     - ``lean/BranchD.lean:203``
+     - ``lean/BranchD.lean:207``
      - Closed
    * - Stabilization invariance
      - ``AC.BranchD.stableReachable_empty_stabilize_iff``
-     - ``lean/BranchD.lean:216``
+     - ``lean/BranchD.lean:220``
      - Closed
    * - Covered class
      - ``AC.BranchD.stableReachable_empty_of_reachable_standard``
-     - ``lean/BranchD.lean:235``
+     - ``lean/BranchD.lean:239``
      - Closed
    * - Stable descent
      - ``AC.BranchD.stableReachable_empty_of_stableReachable_of_reachable``
-     - ``lean/BranchD.lean:242``
+     - ``lean/BranchD.lean:246``
      - Closed
    * - Ordinary implies stable
      - ``AC.Conjecture.stable``
-     - ``lean/AC.lean:141``
+     - ``lean/AC.lean:145``
      - Closed; conditional on AC
    * - Stable projection
      - ``AC.BranchD.StableImpliesOrdinary``
-     - ``lean/BranchD.lean:255``
+     - ``lean/BranchD.lean:259``
      - Definition; open obligation
    * - Stable-invariant no-go
      - ``AC.StableCounterexample.ak3_separation_hypothesis_false``
-     - ``lean/AcStableCounterexample.lean:287``
+     - ``lean/AcStableCounterexample.lean:291``
      - Pruned
    * - Stable abelianization no-go
      - ``AC.StableInvariant.ak3_separation_hypothesis_false``
-     - ``lean/AcStableInvariant.lean:415``
+     - ``lean/AcStableInvariant.lean:419``
      - Pruned
    * - Stable order/cyclicity no-go
      - ``AC.StableInvariant2.ak3_separation_hypothesis_false``
-     - ``lean/AcStableInvariant2.lean:227``
+     - ``lean/AcStableInvariant2.lean:231``
      - Pruned
    * - One-stabilization projection
      - ``AC.StableProjection.one_stabilization_projection_refuted``
-     - ``lean/AcStableProjection.lean:214``
+     - ``lean/AcStableProjection.lean:218``
      - Refuted for nontrivial presentations; trivial-presentation projection open
    * - Trivial projection reduction
      - ``AC.StableTrivial.trivialProjection_iff_aboveOne``
-     - ``lean/AcStableTrivial.lean:307``
+     - ``lean/AcStableTrivial.lean:311``
      - Accepted; rank one closed; n ≥ 2 open
    * - Stable reduction
      - ``AC.BranchD.conjecture_iff_stable_and_projection``
-     - ``lean/BranchD.lean:282``
+     - ``lean/BranchD.lean:286``
      - Closed; AC ↔ Stable AC ∧ projection
 
 The last row is the exact relation between the tracks. The ordinary conjecture is equivalent to the stable conjecture together with the projection principle. The projection principle is stated and not proved, so the equivalence moves the open work; it does not remove it.
@@ -184,4 +184,4 @@ The last row is the exact relation between the tracks. The ordinary conjecture i
 The stable cohort record
 ------------------------
 
-``lean/BranchD3.lean`` records the scored cohort: 10,115 rows, 7,443 solved, and 2,672 unsolved (``lean/BranchD3.lean:50-56``). ``lean/BranchD4.lean`` records the search over the unsolved rows at depth 32 and width 1,000; the measured candidate cohort is empty (``lean/BranchD4.lean:171-181``). The cohort is finite evidence about the projection principle. A search boundary is not a counterexample, and an empty candidate cohort is not a proof of the universal statement.
+``lean/BranchD3.lean`` records the scored cohort: 10,115 rows, 7,443 solved, and 2,672 unsolved (``lean/BranchD3.lean:54-56``). ``lean/BranchD4.lean`` records the search over the unsolved rows at depth 32 and width 1,000; the measured candidate cohort is empty (``lean/BranchD4.lean:175-181``). The cohort is finite evidence about the projection principle. A search boundary is not a counterexample, and an empty candidate cohort is not a proof of the universal statement.

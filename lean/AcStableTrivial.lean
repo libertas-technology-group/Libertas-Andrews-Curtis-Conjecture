@@ -1,11 +1,15 @@
-import AC
-import AcInduction
-import AcInvariant
-import AcStableProjection
-import BranchD
-import Mathlib.GroupTheory.FreeGroup.Basic
-import Mathlib.LinearAlgebra.Span.Basic
-import Mathlib.Tactic
+module
+
+public import AC
+public import AcInduction
+public import AcInvariant
+public import AcStableProjection
+public import BranchD
+public import Mathlib.GroupTheory.FreeGroup.Basic
+public import Mathlib.LinearAlgebra.Span.Basic
+public import Mathlib.Tactic
+
+@[expose] public section
 
 /-!
 # The trivial-presentation stable projection
@@ -181,7 +185,7 @@ theorem equivIntOfUnique_inv (x : FreeGroup (Fin 1)) :
 theorem expVec_zero_eq_equivInt (w : Word 1) :
     (Invariant.expVec w) 0 = FreeGroup.equivIntOfUnique w := by
   induction w using FreeGroup.induction_on with
-  | C1 => simp [Invariant.expVec, Invariant.expHom, FreeGroup.equivIntOfUnique]
+  | one => simp [Invariant.expVec, Invariant.expHom, FreeGroup.equivIntOfUnique]
   | of i =>
       fin_cases i
       simp [Invariant.expVec, Invariant.expHom, Invariant.genVec, FreeGroup.equivIntOfUnique]

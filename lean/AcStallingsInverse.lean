@@ -1,4 +1,8 @@
-import AcStallingsTailArea
+module
+
+public import AcStallingsTailArea
+
+@[expose] public section
 
 /-!
 # AcStallingsInverse — the inverse ascent statement for the tail area

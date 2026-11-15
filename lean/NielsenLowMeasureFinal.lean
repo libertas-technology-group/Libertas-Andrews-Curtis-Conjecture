@@ -1,3 +1,5 @@
+module
+
 /-
 # NielsenLowMeasureFinal — the target reduced to two named inputs
 
@@ -21,9 +23,11 @@ the remaining obligation the corpus has reached.
 No `sorry`, `admit`, `axiom`, or `native_decide` occurs in this file.
 -/
 
-import NielsenOddnessBridge
-import NielsenMeasure10Consumer
-import Mathlib.Tactic
+public import NielsenOddnessBridge
+public import NielsenMeasure10Consumer
+public import Mathlib.Tactic
+
+@[expose] public section
 
 set_option autoImplicit false
 

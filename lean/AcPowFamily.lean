@@ -1,4 +1,8 @@
-import AC
+module
+
+public import AC
+
+@[expose] public section
 
 /-!
 # The power family at rank two

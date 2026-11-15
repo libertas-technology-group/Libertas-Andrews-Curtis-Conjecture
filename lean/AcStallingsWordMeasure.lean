@@ -1,6 +1,10 @@
-import AcStallingsExponentCounterexample
-import AcStallingsExponentMeasure
-import BranchD2
+module
+
+public import AcStallingsExponentCounterexample
+public import AcStallingsExponentMeasure
+public import BranchD2
+
+@[expose] public section
 
 /-!
 # AcStallingsWordMeasure — the word-level replacement measure

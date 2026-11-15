@@ -1,3 +1,5 @@
+module
+
 /-
 # NielsenSliceBridge — what the measure-12 slice does and does not supply
 
@@ -32,12 +34,14 @@ propositions are stated as definitions.
 No `sorry`, `admit`, `axiom`, or `native_decide` occurs in this file.
 -/
 
-import AcNielsen
-import AcNielsenDefs
-import AcProof
-import NielsenMeasure12
-import NielsenMeasure12Cover
-import Mathlib.Tactic
+public import AcNielsen
+public import AcNielsenDefs
+public import AcProof
+public import NielsenMeasure12
+public import NielsenMeasure12Cover
+public import Mathlib.Tactic
+
+@[expose] public section
 
 set_option autoImplicit false
 

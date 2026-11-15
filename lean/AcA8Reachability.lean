@@ -1,7 +1,11 @@
-import AC
-import AcProof
-import Mathlib.GroupTheory.FreeGroup.Reduce
-import Mathlib.Tactic.Group
+module
+
+public import AC
+public import AcProof
+public import Mathlib.GroupTheory.FreeGroup.Reduce
+public import Mathlib.Tactic.Group
+
+@[expose] public section
 
 /-!
 # AcA8Reachability — the buildable delete-letter helper

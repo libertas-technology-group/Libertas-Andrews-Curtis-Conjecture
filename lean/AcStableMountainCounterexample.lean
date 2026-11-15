@@ -1,4 +1,8 @@
-import AcStableMountain
+module
+
+public import AcStableMountain
+
+@[expose] public section
 
 /-!
 # AcStableMountainCounterexample — the stable mountain normal-form inverse

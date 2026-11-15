@@ -1,8 +1,12 @@
-import AC
-import AcBase
-import AcProof
-import Ak3
-import Mathlib.Tactic
+module
+
+public import AC
+public import AcBase
+public import AcProof
+public import Ak3
+public import Mathlib.Tactic
+
+@[expose] public section
 
 /-!
 # Stable AC: invariants, separation, and the AK(3) test
@@ -108,7 +112,7 @@ theorem retractHom_of_g {n : ℕ} (g : Fin (n + 1)) :
 theorem retractHom_of_succAbove {n : ℕ} (g : Fin (n + 1)) (k : Fin n) :
     retractHom g (FreeGroup.of (g.succAbove k)) = FreeGroup.of k := by
   rw [retractHom, FreeGroup.lift_apply_of]
-  rw [dif_neg (Fin.succAbove_ne g k)]
+  rw [dite_eq_right (Fin.succAbove_ne g k)]
   congr 1
   exact Fin.succAbove_right_injective
     (Classical.choose_spec
@@ -118,7 +122,7 @@ theorem retractHom_of_succAbove {n : ℕ} (g : Fin (n + 1)) (k : Fin n) :
 theorem retractHom_map {n : ℕ} (g : Fin (n + 1)) (w : FreeGroup (Fin n)) :
     retractHom g (FreeGroup.map g.succAbove w) = w := by
   induction w using FreeGroup.induction_on with
-  | C1 => simp
+  | one => simp
   | of k => exact retractHom_of_succAbove g k
   | inv_of k ih => simp [ih, retractHom_of_succAbove]
   | mul x y ihx ihy => simp [ihx, ihy]

@@ -1,7 +1,11 @@
-import Ak3
-import Ak3Separation
-import Ak3Invariant
-import BranchC4
+module
+
+public import Ak3
+public import Ak3Separation
+public import Ak3Invariant
+public import BranchC4
+
+@[expose] public section
 
 /-!
 # Ak3OrbitSeparation — the BS(2,3) image-pair invariant
@@ -97,16 +101,19 @@ theorem step_bs23 {P Q : Relators 2} (h : Step P Q) :
   cases h with
   | inv i =>
       rw [bs23Tuple_update, map_inv]
-      simpa only [pairGet_bs23Tuple] using
-        (Relation.ReflTransGen.single (GroupACStep.inv (bs23Tuple P) i))
+      refine Relation.ReflTransGen.single ?_
+      rw [← pairGet_bs23Tuple]
+      exact GroupACStep.inv (bs23Tuple P) i
   | mulRight i j hij =>
       rw [bs23Tuple_update, map_mul]
-      simpa only [pairGet_bs23Tuple] using
-        (Relation.ReflTransGen.single (GroupACStep.mulRight (bs23Tuple P) i j hij))
+      refine Relation.ReflTransGen.single ?_
+      rw [← pairGet_bs23Tuple, ← pairGet_bs23Tuple]
+      exact GroupACStep.mulRight (bs23Tuple P) i j hij
   | conj i w =>
-      rw [bs23Tuple_update]
-      simpa only [map_mul, map_inv, pairGet_bs23Tuple] using
-        (Relation.ReflTransGen.single (GroupACStep.conj (bs23Tuple P) i (bs23Map w)))
+      rw [bs23Tuple_update, map_mul, map_inv, map_mul]
+      refine Relation.ReflTransGen.single ?_
+      rw [← pairGet_bs23Tuple]
+      exact GroupACStep.conj (bs23Tuple P) i (bs23Map w)
 
 theorem reachable_bs23 {P Q : Relators 2} (h : Reachable P Q) :
     GroupACReachable BS23 (bs23Tuple P) (bs23Tuple Q) := by

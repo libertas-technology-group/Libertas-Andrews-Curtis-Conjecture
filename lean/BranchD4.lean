@@ -1,10 +1,14 @@
-import AC
-import AcMove
-import BranchD
-import BranchD3
-import Mathlib.GroupTheory.FreeGroup.Reduce
-import Mathlib.Tactic.Group
-import Mathlib.Tactic
+module
+
+public import AC
+public import AcMove
+public import BranchD
+public import BranchD3
+public import Mathlib.GroupTheory.FreeGroup.Reduce
+public import Mathlib.Tactic.Group
+public import Mathlib.Tactic
+
+@[expose] public section
 
 /-!
 # Branch D4 — the unsolved stable projection cohort

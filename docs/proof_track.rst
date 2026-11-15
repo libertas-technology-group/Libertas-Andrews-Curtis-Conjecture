@@ -12,7 +12,7 @@ The proof track is the ordinary Andrews–Curtis target. The corpus reduces that
 The reduction chain
 -------------------
 
-The ordinary target is ``AC.Conjecture`` at ``lean/AC.lean:55-57``. The chain the corpus establishes is:
+The ordinary target is ``AC.Conjecture`` at ``lean/AC.lean:59-57``. The chain the corpus establishes is:
 
 .. code-block:: text
 
@@ -20,7 +20,7 @@ The ordinary target is ``AC.Conjecture`` at ``lean/AC.lean:55-57``. The chain th
      ↔ hterm
      ⇐ A8, with A7-general and A9 discharged by the accepted corpus
 
-``AC.ProofAttempt.conjecture_iff_terminal`` proves the first equivalence (``lean/AcProof.lean:368``). ``AC.Final.conjecture_iff_A8`` proves that A8 is equivalent to ``AC.Conjecture`` once A7-general is available (``lean/AcFinal.lean:54``). The reduction is a statement about the target. It is not a proof of the target.
+``AC.ProofAttempt.conjecture_iff_terminal`` proves the first equivalence (``lean/AcProof.lean:372``). ``AC.Final.conjecture_iff_A8`` proves that A8 is equivalent to ``AC.Conjecture`` once A7-general is available (``lean/AcFinal.lean:58``). The reduction is a statement about the target. It is not a proof of the target.
 
 A8 --
 
@@ -37,7 +37,7 @@ A8 is open. Two proof attacks are recorded in the session exploration blocks, wh
 A7 and A9
 ---------
 
-A7 is discharged at rank two by ``AC.Euclid.abelianTerminal_reachable_of_expSpan_top`` (``lean/AcEuclid.lean:338``) and at general rank by ``AC.EuclidGeneral.abelianTerminal_reachable_of_expSpan_top_general`` (``lean/AcEuclidGeneral.lean:849``). A9 is discharged by ``AC.RankReduction.rankReduction`` (``lean/AcRankReduction.lean:314``). The A10 assembly consumes those results and leaves A8 as the only open input.
+A7 is discharged at rank two by ``AC.Euclid.abelianTerminal_reachable_of_expSpan_top`` (``lean/AcEuclid.lean:342``) and at general rank by ``AC.EuclidGeneral.abelianTerminal_reachable_of_expSpan_top_general`` (``lean/AcEuclidGeneral.lean:857``). A9 is discharged by ``AC.RankReduction.rankReduction`` (``lean/AcRankReduction.lean:318``). The A10 assembly consumes those results and leaves A8 as the only open input.
 
 The counterproof route
 --------------------
@@ -45,14 +45,14 @@ The counterproof route
 The counterproof route is a separate way to reach a full result. Its record is:
 
 - ``AC.Ak3.ak3_presentsTrivial`` proves that the AK(3) presentation presents the
-  trivial group (``lean/Ak3.lean:37``).
+  trivial group (``lean/Ak3.lean:41``).
 - The separation statement ``¬ Reachable ak3 (standard 2)`` is open
-  (``lean/Ak3.lean:124``).
+  (``lean/Ak3.lean:127``).
 - ``AC.Quotient.psl_index_separates`` proves that a normal-closure index
   different from one refutes reachability to the standard pair
-  (``lean/AcQuotient.lean:124``).
+  (``lean/AcQuotient.lean:128``).
 - ``AC.Ak3Separation.pslIndexSeparation_false`` proves that the AK(3) PSL index
-  is one, so the PSL quotient route is pruned (``lean/Ak3Separation.lean:248``).
+  is one, so the PSL quotient route is pruned (``lean/Ak3Separation.lean:252``).
 - The Fox row-module invariance is refuted by a concrete example held in the
   research workspace record. That route is pruned.
 

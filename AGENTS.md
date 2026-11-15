@@ -17,13 +17,13 @@ ordinary conjecture or of the stable conjecture.
 
 | statement | file | status |
 |---|---|---|
-| the conjecture is equivalent to A8 over every rank | `lean/AcFinal.lean:54` | proved |
-| A8 at rank two follows from the tail-minimal statement | `lean/AcA8TailMinimal.lean:587` | proved |
-| the tail-minimal statement follows from the uniform pivot statement | `lean/AcA8Assembly.lean:116` | proved |
-| the low measure case follows from the measure-twelve slice | `lean/NielsenLowMeasureFinal.lean:47` | proved, conditional on the slice |
-| the measure-twelve base, `measure12_ordered_classification` | `lean/NielsenMeasure12Cover.lean:200` | open, a definition |
-| the high-measure descent | `lean/NielsenSliceBridge.lean:69` | open, a definition |
-| the rank lift from two to every rank | `lean/AcRankReduction.lean:314` | interface stated, not composed |
+| the conjecture is equivalent to A8 over every rank | `lean/AcFinal.lean:58` | proved |
+| A8 at rank two follows from the tail-minimal statement | `lean/AcA8TailMinimal.lean:591` | proved |
+| the tail-minimal statement follows from the uniform pivot statement | `lean/AcA8Assembly.lean:120` | proved |
+| the low measure case follows from the measure-twelve slice | `lean/NielsenLowMeasureFinal.lean:51` | proved, conditional on the slice |
+| the measure-twelve base, `measure12_ordered_classification` | `lean/NielsenMeasure12Cover.lean:204` | open, a definition |
+| the high-measure descent | `lean/NielsenSliceBridge.lean:73` | open, a definition |
+| the rank lift from two to every rank | `lean/AcRankReduction.lean:318` | interface stated, not composed |
 
 The exact statement of the reduction, with the two primitive open inputs named, is in
 the README. Two derived definitions, `measure12_covers_witness` and

@@ -1,3 +1,5 @@
+module
+
 /-
   The abelianisation collapse, exponent-vector half.
 
@@ -33,14 +35,16 @@
   module (`relationSubgroup_eq_top`) inline.  The mathematical content is the
   continuation of that module, and it composes with it unchanged.
 -/
-import Ak3Invariant
-import Mathlib.GroupTheory.FreeAbelianGroup
-import Mathlib.Algebra.FreeAbelianGroup.Finsupp
-import Mathlib.Algebra.Group.Finsupp
-import Mathlib.Algebra.Group.Equiv.TypeTags
-import Mathlib.GroupTheory.Abelianization.Defs
-import Mathlib.Algebra.Group.Subgroup.Lattice
-import Mathlib.Algebra.Group.Subgroup.Map
+public import Ak3Invariant
+public import Mathlib.GroupTheory.FreeAbelianGroup
+public import Mathlib.Algebra.FreeAbelianGroup.Finsupp
+public import Mathlib.Algebra.Group.Finsupp
+public import Mathlib.Algebra.Group.Equiv.TypeTags
+public import Mathlib.GroupTheory.Abelianization.Defs
+public import Mathlib.Algebra.Group.Subgroup.Lattice
+public import Mathlib.Algebra.Group.Subgroup.Map
+
+@[expose] public section
 
 namespace AC.RelationCollapse
 
@@ -79,8 +83,7 @@ theorem abelianizationWordEquiv_of (n : ℕ) (w : Word n) :
         FreeAbelianGroup.toFinsupp_of]
       simp only [Finsupp.addEquivFunOnFinite]
       exact Finsupp.equivFunOnFinite_single i 1
-    simpa [abelianizationWordEquiv, Invariant.genVec] using
-      congrArg Multiplicative.ofAdd hfinal
+    exact congrArg Multiplicative.ofAdd hfinal
   have h := DFunLike.congr_fun hhom w
   simpa [Invariant.expVec] using h
 
@@ -96,12 +99,12 @@ theorem relationModule_equiv_expVec {n : ℕ} {R : Relators n}
         e (Abelianization.of ⟨R i, hi⟩) =
           Multiplicative.ofAdd (Invariant.expVec (R i)) := by
   have htop : relationSubgroup R = ⊤ := by
-    haveI : (relationSubgroup R).Normal := by
+    have : (relationSubgroup R).Normal := by
       unfold relationSubgroup
       infer_instance
     rw [eq_top_iff]
     intro w _
-    haveI : Subsingleton (Word n ⧸ relationSubgroup R) := h
+    have : Subsingleton (Word n ⧸ relationSubgroup R) := h
     have h1 : (QuotientGroup.mk w : Word n ⧸ relationSubgroup R) = 1 :=
       Subsingleton.elim _ _
     exact (QuotientGroup.eq_one_iff w).mp h1

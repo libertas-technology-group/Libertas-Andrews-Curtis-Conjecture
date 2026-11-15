@@ -1,3 +1,5 @@
+module
+
 /-
 # AcBS23Conjugacy — cyclic shifts on the HNN normal form
 
@@ -7,9 +9,11 @@ normal word with trivial head and a wrap-around chain link, one-step rotation is
 again a normal word, rotates the exponent list, and preserves the conjugacy
 class. The converse invariant and the target decision are separate steps.
 -/
-import Mathlib.GroupTheory.HNNExtension
-import Mathlib.Data.List.Rotate
-import Mathlib.Algebra.Group.Conj
+public import Mathlib.GroupTheory.HNNExtension
+public import Mathlib.Data.List.Rotate
+public import Mathlib.Algebra.Group.Conj
+
+@[expose] public section
 
 set_option autoImplicit false
 
@@ -220,10 +224,10 @@ theorem unitsSMul_toList_map_fst (u : ℤˣ) (w : HNNExtension.NormalWord d) :
           have hhead := h.2
           rw [hw] at hhead
           simpa using hhead
-    · rw [HNNExtension.NormalWord.unitsSMul, dif_pos h, unitsSMulWithCancel_toList]
+    · rw [HNNExtension.NormalWord.unitsSMul, dite_eq_left h, unitsSMulWithCancel_toList]
       simp
   · left
-    rw [HNNExtension.NormalWord.unitsSMul, dif_neg h]
+    rw [HNNExtension.NormalWord.unitsSMul, dite_eq_right h]
     simp
 
 

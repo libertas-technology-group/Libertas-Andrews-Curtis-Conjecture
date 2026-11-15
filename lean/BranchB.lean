@@ -1,10 +1,14 @@
-import AC
-import AcInvariant
-import Mathlib.LinearAlgebra.Matrix.Determinant.Basic
-import Mathlib.LinearAlgebra.Finsupp.LinearCombination
-import Mathlib.Data.Int.Order.Units
-import Mathlib.GroupTheory.FreeGroup.Reduce
-import Mathlib.Tactic.Ring
+module
+
+public import AC
+public import AcInvariant
+public import Mathlib.LinearAlgebra.Matrix.Determinant.Basic
+public import Mathlib.LinearAlgebra.Finsupp.LinearCombination
+public import Mathlib.Data.Int.Order.Units
+public import Mathlib.GroupTheory.FreeGroup.Reduce
+public import Mathlib.Tactic.Ring
+
+@[expose] public section
 
 /-!
 # Branch B: the rank-two structural classification
@@ -40,8 +44,7 @@ noncomputable def expDeterminant (R : Relators 2) : ℤ :=
 /-- The explicit determinant is the matrix determinant. -/
 theorem expDeterminant_eq_matrix_det (R : Relators 2) :
     expDeterminant R = Matrix.det (expMatrix R) := by
-  unfold expDeterminant expMatrix
-  rw [Matrix.det_fin_two]
+  simp [expDeterminant, expMatrix, Matrix.det_fin_two]
 
 /-- The exponent vector of a free generator is the corresponding standard basis vector. -/
 @[simp] theorem expVec_of (i : Fin n) :

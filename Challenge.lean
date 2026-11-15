@@ -1,3 +1,5 @@
+module
+
 /-
 # Challenge — Andrews–Curtis, three universal laws
 
@@ -20,7 +22,9 @@ Two vocabulary lemmas record that conjugation fixes the exponent data:
 Vocabulary is restated rather than imported because the registry caps the
 challenge module's imports to Lean core, Mathlib, Tau Ceti and CSLib.
 -/
-import Mathlib
+public import Mathlib
+
+@[expose] public section
 
 namespace ACChallenge
 

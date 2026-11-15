@@ -1,6 +1,10 @@
-import AcStallingsTailAreaCounterexample
-import AcInvariant
-import BranchD2
+module
+
+public import AcStallingsTailAreaCounterexample
+public import AcInvariant
+public import BranchD2
+
+@[expose] public section
 
 /-!
 # AcStallingsExponentMeasure — a replacement measure for the Stallings route

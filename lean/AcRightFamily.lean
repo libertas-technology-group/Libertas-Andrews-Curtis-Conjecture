@@ -1,5 +1,9 @@
-import AC
-import Mathlib.Tactic.Group
+module
+
+public import AC
+public import Mathlib.Tactic.Group
+
+@[expose] public section
 
 /-!
 # The right power family at rank two: `(x, y * x ^ n)`

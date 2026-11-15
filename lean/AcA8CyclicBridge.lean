@@ -1,6 +1,10 @@
-import AcA8TailMinimal
-import AcNielsen
-import NielsenRotationNormalForm
+module
+
+public import AcA8TailMinimal
+public import AcNielsen
+public import NielsenRotationNormalForm
+
+@[expose] public section
 
 set_option autoImplicit false
 set_option maxHeartbeats 1000000

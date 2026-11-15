@@ -1,4 +1,8 @@
-import BranchC3
+module
+
+public import BranchC3
+
+@[expose] public section
 
 /-!
 # Branch C4: the targeted bidirectional PSL(2,ℤ) orbit test at length 20

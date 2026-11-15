@@ -1,5 +1,9 @@
-import AC
-import BranchD
+module
+
+public import AC
+public import BranchD
+
+@[expose] public section
 
 /-!
 # AcStableMountain — the stable AC mountain normal-form statement

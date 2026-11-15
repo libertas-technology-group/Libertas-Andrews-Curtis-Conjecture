@@ -1,11 +1,15 @@
-import AC
-import AcInvariant
-import AcMove
-import AcProof
-import BranchD
-import BranchD2
-import Mathlib.Tactic
-import Mathlib.Tactic.Group
+module
+
+public import AC
+public import AcInvariant
+public import AcMove
+public import AcProof
+public import BranchD
+public import BranchD2
+public import Mathlib.Tactic
+public import Mathlib.Tactic.Group
+
+@[expose] public section
 
 /-!
 # The stable projection: one stabilization is refutable

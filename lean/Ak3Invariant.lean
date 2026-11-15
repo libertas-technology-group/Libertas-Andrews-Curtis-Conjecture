@@ -1,10 +1,14 @@
-import Ak3
-import Ak3Separation
-import AcBase
-import AcProof
-import Mathlib.GroupTheory.Nilpotent
-import Mathlib.GroupTheory.Abelianization.Defs
-import Mathlib.Algebra.MonoidAlgebra.MapDomain
+module
+
+public import Ak3
+public import Ak3Separation
+public import AcBase
+public import AcProof
+public import Mathlib.GroupTheory.Nilpotent
+public import Mathlib.GroupTheory.Abelianization.Defs
+public import Mathlib.Algebra.MonoidAlgebra.MapDomain
+
+@[expose] public section
 
 /-!
 # AK(3): the relation module, lower-central classes, finite quotients, and
@@ -225,7 +229,7 @@ theorem presentsTrivial_of_reachable_ak3 {R : Relators 2}
 /-- In a one-element group every subgroup is the whole group, so every term of
 the lower central series is the whole group. -/
 theorem lowerCentralSeries_eq_top_of_subsingleton {G : Type*} [Group G]
-    [Subsingleton G] (k : ℕ) : lowerCentralSeries G k = ⊤ := by
+    [Subsingleton G] (k : ℕ) : Subgroup.lowerCentralSeries (⊤ : Subgroup G) k = ⊤ := by
   rw [eq_top_iff]
   intro x _
   rw [Subsingleton.elim x 1]
@@ -234,22 +238,22 @@ theorem lowerCentralSeries_eq_top_of_subsingleton {G : Type*} [Group G]
 /-- The lower central series of the group presented by AK(3) is the whole group
 at every stage. -/
 theorem lowerCentralSeries_ak3_eq_top (k : ℕ) :
-    lowerCentralSeries (PresentedGroup (Set.range Ak3.ak3)) k = ⊤ := by
-  haveI : Subsingleton (PresentedGroup (Set.range Ak3.ak3)) := Ak3.ak3_presentsTrivial
+   Subgroup.lowerCentralSeries (⊤ : Subgroup (PresentedGroup (Set.range Ak3.ak3))) k = ⊤ := by
+  have : Subsingleton (PresentedGroup (Set.range Ak3.ak3)) := Ak3.ak3_presentsTrivial
   exact lowerCentralSeries_eq_top_of_subsingleton k
 
 /-- The lower central series of the group presented by the standard pair is the
 whole group at every stage. -/
 theorem lowerCentralSeries_standard_eq_top (k : ℕ) :
-    lowerCentralSeries (PresentedGroup (Set.range (standard 2))) k = ⊤ := by
-  haveI : Subsingleton (PresentedGroup (Set.range (standard 2))) :=
+   Subgroup.lowerCentralSeries (⊤ : Subgroup (PresentedGroup (Set.range (standard 2)))) k = ⊤ := by
+  have : Subsingleton (PresentedGroup (Set.range (standard 2))) :=
     Base.presentsTrivialGroup_standard 2
   exact lowerCentralSeries_eq_top_of_subsingleton k
 
 /-- The `k`-th lower central quotient of a balanced presentation. -/
 noncomputable abbrev lowerCentralQuotient {n : ℕ} (R : Relators n) (k : ℕ) : Type :=
   PresentedGroup (Set.range R) ⧸
-    lowerCentralSeries (PresentedGroup (Set.range R)) k
+   Subgroup.lowerCentralSeries (⊤ : Subgroup (PresentedGroup (Set.range R))) k
 
 /-- The `k`-th lower central quotient of AK(3) is a one-element group. -/
 theorem lowerCentralQuotient_ak3_subsingleton (k : ℕ) :
@@ -268,16 +272,16 @@ class: the class cannot change from the trivial class. -/
 theorem lowerCentralQuotient_subsingleton_of_reachable_ak3 {R : Relators 2}
     (h : Reachable Ak3.ak3 R) (k : ℕ) :
     Subsingleton (lowerCentralQuotient R k) := by
-  haveI : Subsingleton (PresentedGroup (Set.range R)) := presentsTrivial_of_reachable_ak3 h
+  have : Subsingleton (PresentedGroup (Set.range R)) := presentsTrivial_of_reachable_ak3 h
   exact QuotientGroup.subsingleton_iff.mpr (lowerCentralSeries_eq_top_of_subsingleton k)
 
 /-- The `k`-th lower central quotients of AK(3) and of the standard pair are
 multiplicatively equivalent at every stage. -/
 theorem lowerCentralQuotient_mulEquiv (k : ℕ) :
     Nonempty (lowerCentralQuotient Ak3.ak3 k ≃* lowerCentralQuotient (standard 2) k) := by
-  haveI : Subsingleton (lowerCentralQuotient Ak3.ak3 k) :=
+  have : Subsingleton (lowerCentralQuotient Ak3.ak3 k) :=
     lowerCentralQuotient_ak3_subsingleton k
-  haveI : Subsingleton (lowerCentralQuotient (standard 2) k) :=
+  have : Subsingleton (lowerCentralQuotient (standard 2) k) :=
     lowerCentralQuotient_standard_subsingleton k
   exact ⟨subsingletonMulEquiv _ _⟩
 
@@ -319,8 +323,8 @@ equivalent. -/
 theorem presentedGroup_ak3_mulEquiv_standard :
     Nonempty (PresentedGroup (Set.range Ak3.ak3) ≃*
       PresentedGroup (Set.range (standard 2))) := by
-  haveI : Subsingleton (PresentedGroup (Set.range Ak3.ak3)) := Ak3.ak3_presentsTrivial
-  haveI : Subsingleton (PresentedGroup (Set.range (standard 2))) :=
+  have : Subsingleton (PresentedGroup (Set.range Ak3.ak3)) := Ak3.ak3_presentsTrivial
+  have : Subsingleton (PresentedGroup (Set.range (standard 2))) :=
     Base.presentsTrivialGroup_standard 2
   exact ⟨subsingletonMulEquiv _ _⟩
 
@@ -333,8 +337,8 @@ theorem groupInvariant_ak3_eq_standard {α : Type*}
     (hI : ∀ {G H : Type} [Group G] [Group H], G ≃* H → I G = I H) :
     I (PresentedGroup (Set.range Ak3.ak3))
       = I (PresentedGroup (Set.range (standard 2))) := by
-  haveI : Subsingleton (PresentedGroup (Set.range Ak3.ak3)) := Ak3.ak3_presentsTrivial
-  haveI : Subsingleton (PresentedGroup (Set.range (standard 2))) :=
+  have : Subsingleton (PresentedGroup (Set.range Ak3.ak3)) := Ak3.ak3_presentsTrivial
+  have : Subsingleton (PresentedGroup (Set.range (standard 2))) :=
     Base.presentsTrivialGroup_standard 2
   exact hI (subsingletonMulEquiv _ _)
 
@@ -347,8 +351,8 @@ theorem groupRingInvariant_ak3_eq_standard {α : Type*}
     (hK : ∀ {R S : Type} [Ring R] [Ring S], R ≃+* S → K R = K S) :
     K (MonoidAlgebra ℤ (PresentedGroup (Set.range Ak3.ak3)))
       = K (MonoidAlgebra ℤ (PresentedGroup (Set.range (standard 2)))) := by
-  haveI : Subsingleton (PresentedGroup (Set.range Ak3.ak3)) := Ak3.ak3_presentsTrivial
-  haveI : Subsingleton (PresentedGroup (Set.range (standard 2))) :=
+  have : Subsingleton (PresentedGroup (Set.range Ak3.ak3)) := Ak3.ak3_presentsTrivial
+  have : Subsingleton (PresentedGroup (Set.range (standard 2))) :=
     Base.presentsTrivialGroup_standard 2
   exact hK (MonoidAlgebra.mapDomainRingEquiv (R := ℤ) (subsingletonMulEquiv _ _))
 

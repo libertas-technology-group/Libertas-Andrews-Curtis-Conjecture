@@ -1,9 +1,13 @@
-import AC
-import AcInvariant
-import Mathlib.Data.Finset.Basic
-import Mathlib.GroupTheory.Perm.Sign
-import Mathlib.Logic.Equiv.Basic
-import Mathlib.Tactic.Group
+module
+
+public import AC
+public import AcInvariant
+public import Mathlib.Data.Finset.Basic
+public import Mathlib.GroupTheory.Perm.Sign
+public import Mathlib.Logic.Equiv.Basic
+public import Mathlib.Tactic.Group
+
+@[expose] public section
 
 /-!
 # The proof attempt against `AC.Conjecture` and `¬ AC.Conjecture`
@@ -350,12 +354,12 @@ theorem signedPermutation_reachable_standard (n : ℕ) (T : Relators n)
     funext i
     cases hεi : ε i
     · have hmem : i ∈ s := by simp [hs_def, hεi]
-      rw [if_pos hmem]
+      rw [ite_eq_left hmem]
       have hTi : T i = (FreeGroup.of (σ i))⁻¹ := by
         simpa [hεi] using hε i
       simp [hTi, tupleOf, hf i]
     · have hmem : i ∉ s := by simp [hs_def, hεi]
-      rw [if_neg hmem]
+      rw [ite_eq_right hmem]
       have hTi : T i = FreeGroup.of (σ i) := by
         simpa [hεi] using hε i
       simp [hTi, tupleOf, hf i]

@@ -1,5 +1,9 @@
-import AcEuclid
-import Mathlib.GroupTheory.FreeGroup.Reduce
+module
+
+public import AcEuclid
+public import Mathlib.GroupTheory.FreeGroup.Reduce
+
+@[expose] public section
 
 /-!
 # AcTailDefs — the definition closure of the multiplier core

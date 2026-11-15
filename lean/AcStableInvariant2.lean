@@ -1,11 +1,15 @@
-import AC
-import AcBase
-import AcStableInvariant
-import Ak3
-import Mathlib.Tactic
-import Mathlib.SetTheory.Cardinal.Free
-import Mathlib.GroupTheory.SpecificGroups.Cyclic
-import Mathlib.Algebra.Group.Int.TypeTags
+module
+
+public import AC
+public import AcBase
+public import AcStableInvariant
+public import Ak3
+public import Mathlib.Tactic
+public import Mathlib.SetTheory.Cardinal.Free
+public import Mathlib.GroupTheory.SpecificGroups.Cyclic
+public import Mathlib.Algebra.Group.Int.TypeTags
+
+@[expose] public section
 
 /-!
 # Stable AC: a third invariant test, the order and cyclicity refinement
@@ -125,7 +129,7 @@ theorem groupOrderInvariant_isStableInvariant :
 /-- AK(3) presents the one-element group, so its order component is `1`. -/
 theorem groupOrderInvariant_ak3 : groupOrderInvariant ⟨2, Ak3.ak3⟩ = 1 := by
   unfold groupOrderInvariant
-  haveI : Subsingleton (PresentedGroup (Set.range Ak3.ak3)) := Ak3.ak3_presentsTrivial
+  have : Subsingleton (PresentedGroup (Set.range Ak3.ak3)) := Ak3.ak3_presentsTrivial
   exact Nat.card_unique
 
 /-- The standard rank-two presentation is one-element, so its order component
@@ -133,7 +137,7 @@ is `1`. -/
 theorem groupOrderInvariant_standard :
     groupOrderInvariant ⟨2, standard 2⟩ = 1 := by
   unfold groupOrderInvariant
-  haveI : Subsingleton (PresentedGroup (Set.range (standard 2))) :=
+  have : Subsingleton (PresentedGroup (Set.range (standard 2))) :=
     Base.presentsTrivialGroup_standard 2
   exact Nat.card_unique
 
@@ -174,15 +178,15 @@ theorem cyclicityInvariant_isStableInvariant :
 `true`. -/
 theorem cyclicityInvariant_ak3 : cyclicityInvariant ⟨2, Ak3.ak3⟩ = true := by
   unfold cyclicityInvariant
-  haveI : Subsingleton (PresentedGroup (Set.range Ak3.ak3)) := Ak3.ak3_presentsTrivial
-  rw [if_pos (inferInstance : IsCyclic (PresentedGroup (Set.range Ak3.ak3)))]
+  have : Subsingleton (PresentedGroup (Set.range Ak3.ak3)) := Ak3.ak3_presentsTrivial
+  rw [ite_eq_left (inferInstance : IsCyclic (PresentedGroup (Set.range Ak3.ak3)))]
 
 /-- The cyclicity component of the standard rank-two presentation is `true`. -/
 theorem cyclicityInvariant_standard : cyclicityInvariant ⟨2, standard 2⟩ = true := by
   unfold cyclicityInvariant
-  haveI : Subsingleton (PresentedGroup (Set.range (standard 2))) :=
+  have : Subsingleton (PresentedGroup (Set.range (standard 2))) :=
     Base.presentsTrivialGroup_standard 2
-  rw [if_pos (inferInstance : IsCyclic (PresentedGroup (Set.range (standard 2))))]
+  rw [ite_eq_left (inferInstance : IsCyclic (PresentedGroup (Set.range (standard 2))))]
 
 /-! ## 4. The refinement invariant -/
 
@@ -282,7 +286,7 @@ generators to the two standard generators of `ℤ × ℤ` is a surjection, and
 `ℤ × ℤ` is not cyclic. -/
 theorem freeGroup_two_not_isCyclic : ¬ IsCyclic (FreeGroup (Fin 2)) := by
   intro h
-  haveI : IsCyclic (FreeGroup (Fin 2)) := h
+  have : IsCyclic (FreeGroup (Fin 2)) := h
   let f : FreeGroup (Fin 2) →* (Multiplicative ℤ × Multiplicative ℤ) :=
     FreeGroup.lift fun i : Fin 2 =>
       if i = 0 then (Multiplicative.ofAdd (1 : ℤ), 1)
@@ -306,7 +310,7 @@ theorem not_isCyclic_presentedGroup_trivialRelators :
 theorem cyclicityInvariant_trivialRelators :
     cyclicityInvariant ⟨2, trivialRelators⟩ = false := by
   unfold cyclicityInvariant
-  rw [if_neg not_isCyclic_presentedGroup_trivialRelators]
+  rw [ite_eq_right not_isCyclic_presentedGroup_trivialRelators]
 
 /-- The order component separates the free presentation from the standard
 rank-two tuple. -/

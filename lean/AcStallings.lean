@@ -1,7 +1,11 @@
-import AC
-import Mathlib.GroupTheory.FreeGroup.Reduce
-import Mathlib.Data.Fintype.Sigma
-import Mathlib.Data.Fintype.Option
+module
+
+public import AC
+public import Mathlib.GroupTheory.FreeGroup.Reduce
+public import Mathlib.Data.Fintype.Sigma
+public import Mathlib.Data.Fintype.Option
+
+@[expose] public section
 
 /-!
 # AcStallings — Stallings graphs, immersions, and elementary folds

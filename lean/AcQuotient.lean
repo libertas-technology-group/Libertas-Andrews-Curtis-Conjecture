@@ -1,4 +1,8 @@
-import BranchC3
+module
+
+public import BranchC3
+
+@[expose] public section
 
 /-!
 # The quotient index test

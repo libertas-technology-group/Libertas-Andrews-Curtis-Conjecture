@@ -66,7 +66,7 @@ Registry entry
      - Value
      - Command
    * - Challenge module size
-     - 163 lines, 7,178 bytes
+     - 167 lines, 7,219 bytes
      - ``wc -lc Challenge.lean``
    * - ``sorry`` in Solution
      - 0
@@ -82,6 +82,6 @@ What is not claimed
 -------------------
 
 The conjecture is open in this corpus. Two declarations of type ``Prop`` carry
-no proof: ``HighMeasureDescent`` at ``lean/NielsenSliceBridge.lean:69`` and
-``measure12_ordered_classification`` at ``lean/NielsenMeasure12Cover.lean:200``.
+no proof: ``HighMeasureDescent`` at ``lean/NielsenSliceBridge.lean:73`` and
+``measure12_ordered_classification`` at ``lean/NielsenMeasure12Cover.lean:204``.
 No command in this file reports either as proved.

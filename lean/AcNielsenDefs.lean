@@ -1,3 +1,5 @@
+module
+
 /-
 # Definitions for the cyclic Nielsen measure
 
@@ -8,9 +10,11 @@ and the abelian-terminal predicate. The bodies are those of the session source
 restated in a different form. The module carries no proofs and no assumptions.
 -/
 
-import AC
-import AcInvariant
-import Mathlib.GroupTheory.FreeGroup.CyclicallyReduced
+public import AC
+public import AcInvariant
+public import Mathlib.GroupTheory.FreeGroup.CyclicallyReduced
+
+@[expose] public section
 
 set_option autoImplicit false
 

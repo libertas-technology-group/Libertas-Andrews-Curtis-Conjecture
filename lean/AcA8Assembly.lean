@@ -1,7 +1,11 @@
+module
 
-import AcA8TailMinimal
-import AcA8PivotReduction
-import AcA8CyclicBridge
+
+public import AcA8TailMinimal
+public import AcA8PivotReduction
+public import AcA8CyclicBridge
+
+@[expose] public section
 
 /-!
 # AcA8Assembly — conditional assembly of the A8 tail-minimal equation

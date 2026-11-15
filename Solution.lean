@@ -1,3 +1,5 @@
+module
+
 /-
 # Solution — Andrews–Curtis, three universal laws
 
@@ -7,7 +9,9 @@ and the challenge module may not import this project.
 
 Axioms used: `propext`, `Classical.choice`, `Quot.sound`. No `sorryAx`.
 -/
-import Mathlib
+public import Mathlib
+
+@[expose] public section
 
 namespace ACChallenge
 
@@ -128,7 +132,14 @@ theorem expSpan_eq_top_of_presents {n : ℕ} {R : Relators n}
       have := hle hmem
       simpa [MonoidHom.mem_ker] using this
     have h2 : (Submodule.Quotient.mk (genVec i) : (Fin n → ℤ) ⧸ expSpan R) = 0 := by
-      simpa [ψ, quoHom, expHom, expVec, genVec] using h1
+      have hq1 : quoHom (Multiplicative.ofAdd (genVec i)) =
+          Multiplicative.ofAdd (Submodule.Quotient.mk (genVec i) : (Fin n → ℤ) ⧸ expSpan R) := rfl
+      have h1' : Multiplicative.ofAdd (Submodule.Quotient.mk (genVec i) : (Fin n → ℤ) ⧸ expSpan R) = 1 := by
+        calc Multiplicative.ofAdd (Submodule.Quotient.mk (genVec i) : (Fin n → ℤ) ⧸ expSpan R)
+            = quoHom (Multiplicative.ofAdd (genVec i)) := hq1.symm
+          _ = ψ (FreeGroup.of i) := by simp [ψ, expHom, genVec]
+          _ = 1 := h1
+      exact ofAdd_eq_one.mp h1'
     rwa [Submodule.Quotient.mk_eq_zero] at h2
   have hbasis : Submodule.span ℤ (Set.range (fun i : Fin n => genVec i)) = ⊤ := by
     have hfun : (fun i : Fin n => genVec i) = ⇑(Pi.basisFun ℤ (Fin n)) := by
@@ -154,8 +165,8 @@ theorem expMatrix_update {n : ℕ} (R : Relators n) (i : Fin n) (w : Word n) :
   funext r s
   by_cases hr : r = i
   · rw [hr]
-    simp [expMatrix]
-  · simp [expMatrix, hr]
+    simp [expMatrix, Function.update]
+  · simp [expMatrix, Function.update, hr]
 
 theorem expMatrix_rowAdd {n : ℕ} (R : Relators n) (i j : Fin n) (c : ℤ) :
     expMatrix (Function.update R i (R i * R j ^ c)) =
@@ -163,8 +174,8 @@ theorem expMatrix_rowAdd {n : ℕ} (R : Relators n) (i j : Fin n) (c : ℤ) :
   funext r s
   by_cases hr : r = i
   · rw [hr]
-    simp [expMatrix, expVec_mul, expVec_zpow_general, Pi.add_apply]
-  · simp [expMatrix, hr]
+    simp [expMatrix, expVec_mul, expVec_zpow_general, Pi.add_apply, Function.update]
+  · simp [expMatrix, Function.update, hr]
 
 theorem expMatrix_rowNeg {n : ℕ} (R : Relators n) (i : Fin n) :
     expMatrix (Function.update R i (R i)⁻¹) =
@@ -172,13 +183,14 @@ theorem expMatrix_rowNeg {n : ℕ} (R : Relators n) (i : Fin n) :
   funext r s
   by_cases hr : r = i
   · rw [hr]
-    simp [expMatrix, expVec_inv]
-  · simp [expMatrix, hr]
+    simp [expMatrix, expVec_inv, Function.update]
+  · simp [expMatrix, Function.update, hr]
 
 theorem expMatrix_conj {n : ℕ} (R : Relators n) (i : Fin n) (w : Word n) :
     expMatrix (Function.update R i (w * R i * w⁻¹)) = expMatrix R := by
   rw [expMatrix_update, expVec_conj]
-  rw [show expVec (R i) = (expMatrix R) i from rfl, Function.update_eq_self]
+  rw [show expVec (R i) = (expMatrix R) i from rfl]
+  exact Function.update_eq_self i (expMatrix R)
 
 theorem expMatrix_det_rowAdd {n : ℕ} (R : Relators n) (i j : Fin n)
     (hij : i ≠ j) (c : ℤ) :
@@ -444,7 +456,7 @@ theorem expHom_map_succAbove {n : ℕ} (g : Fin (n + 1)) :
 theorem expVec_map_succAbove {n : ℕ} (g : Fin (n + 1)) (w : Word n) :
     expVec (FreeGroup.map (Fin.succAbove g) w) = tau g (expVec w) := by
   have h := DFunLike.congr_fun (expHom_map_succAbove g) w
-  simpa [expVec, tauMul, tauAdd] using h
+  exact congrArg Multiplicative.toAdd h
 
 /-- The inserted relator has the new basis vector as exponent vector. -/
 theorem expVec_stabilize_self {n : ℕ} (R : Relators n) (g i : Fin (n + 1)) :

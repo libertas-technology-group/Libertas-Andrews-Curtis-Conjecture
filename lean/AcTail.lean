@@ -1,4 +1,8 @@
-import AcTailDefs
+module
+
+public import AcTailDefs
+
+@[expose] public section
 
 /-!
 # AcTail — the Magnus multiplier-core descent statement

@@ -1,8 +1,12 @@
-import AcStallings
-import AcTailDefs
-import AcTailGeneral
-import AcTailClass
-import AcProof
+module
+
+public import AcStallings
+public import AcTailDefs
+public import AcTailGeneral
+public import AcTailClass
+public import AcProof
+
+@[expose] public section
 
 /-!
 # AcStallingsTailArea — a candidate state-level tail area

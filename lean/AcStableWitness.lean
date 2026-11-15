@@ -1,15 +1,19 @@
-import AC
-import AcStableTrivial
-import AcStableProjection
-import AcBase
-import AcProof
-import Ak3
-import BranchD2
-import Mathlib.Algebra.Group.TypeTags.Basic
-import Mathlib.Data.ZMod.Basic
-import Mathlib.GroupTheory.FreeGroup.Basic
-import Mathlib.GroupTheory.PresentedGroup
-import Mathlib.Tactic
+module
+
+public import AC
+public import AcStableTrivial
+public import AcStableProjection
+public import AcBase
+public import AcProof
+public import Ak3
+public import BranchD2
+public import Mathlib.Algebra.Group.TypeTags.Basic
+public import Mathlib.Data.ZMod.Basic
+public import Mathlib.GroupTheory.FreeGroup.Basic
+public import Mathlib.GroupTheory.PresentedGroup
+public import Mathlib.Tactic
+
+@[expose] public section
 
 /-!
 # AcStableWitness — the rank-two trivial-presentation witness lane
@@ -132,7 +136,7 @@ theorem counterA_not_presentsTrivialGroup :
     rw [PresentedGroup.toGroup.of]
     simp [f]
   have hone : g (PresentedGroup.of (1 : Fin 2)) = 1 := by
-    haveI : Subsingleton (PresentedGroup (Set.range StableProjection.counterA)) := h
+    have : Subsingleton (PresentedGroup (Set.range StableProjection.counterA)) := h
     rw [Subsingleton.elim (PresentedGroup.of (1 : Fin 2)) 1, map_one]
   rw [hgen] at hone
   have hne : Multiplicative.ofAdd (1 : ZMod 2) ≠ 1 := by
@@ -161,7 +165,7 @@ theorem counterB_not_presentsTrivialGroup :
     rw [PresentedGroup.toGroup.of]
     simp [f]
   have hone : g (PresentedGroup.of (0 : Fin 2)) = 1 := by
-    haveI : Subsingleton (PresentedGroup (Set.range StableProjection.counterB)) := h
+    have : Subsingleton (PresentedGroup (Set.range StableProjection.counterB)) := h
     rw [Subsingleton.elim (PresentedGroup.of (0 : Fin 2)) 1, map_one]
   rw [hgen] at hone
   have hne : Multiplicative.ofAdd (1 : ZMod 2) ≠ 1 := by

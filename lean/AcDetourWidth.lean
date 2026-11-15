@@ -1,3 +1,5 @@
+module
+
 /-
 # Detour width is not a function of graph distance
 
@@ -15,8 +17,10 @@ multiplies it by the other; both are one move from the standard tuple, so both
 have graph distance one, while their detour widths are two and three.
 -/
 
-import AcA8PivotReduction
-import AcInvariant
+public import AcA8PivotReduction
+public import AcInvariant
+
+@[expose] public section
 
 set_option autoImplicit false
 

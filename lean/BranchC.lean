@@ -1,9 +1,13 @@
-import AC
-import AcInvariant
-import Mathlib.RingTheory.Noetherian.Orzech
-import Mathlib.RingTheory.PrincipalIdealDomain
-import Mathlib.Algebra.EuclideanDomain.Int
-import Mathlib.Algebra.Module.Submodule.Lattice
+module
+
+public import AC
+public import AcInvariant
+public import Mathlib.RingTheory.Noetherian.Orzech
+public import Mathlib.RingTheory.PrincipalIdealDomain
+public import Mathlib.Algebra.EuclideanDomain.Int
+public import Mathlib.Algebra.Module.Submodule.Lattice
+
+@[expose] public section
 
 /-!
 # Branch C: presentation-complex and normal-form invariants
@@ -124,9 +128,9 @@ theorem h2_eq_bot_of_presents {R : Relators n} (h : PresentsTrivialGroup R) :
   have htop : expSpan R = ⊤ := expSpan_eq_top_of_presents h
   have hsurj : Function.Surjective (boundary2 R) := by
     rw [← LinearMap.range_eq_top, range_boundary2, htop]
-  haveI : IsNoetherianRing ℤ := PrincipalIdealRing.isNoetherianRing
-  haveI : Module.Finite ℤ (Fin n → ℤ) := inferInstance
-  haveI : IsNoetherian ℤ (Fin n → ℤ) :=
+  have : IsNoetherianRing ℤ := PrincipalIdealRing.isNoetherianRing
+  have : Module.Finite ℤ (Fin n → ℤ) := inferInstance
+  have : IsNoetherian ℤ (Fin n → ℤ) :=
     isNoetherian_of_isNoetherianRing_of_finite ℤ (Fin n → ℤ)
   rw [h2]
   exact LinearMap.ker_eq_bot.mpr

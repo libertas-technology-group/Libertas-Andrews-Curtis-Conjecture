@@ -1,5 +1,9 @@
-import AcStallingsExponentMeasure
-import AcProof
+module
+
+public import AcStallingsExponentMeasure
+public import AcProof
+
+@[expose] public section
 
 /-!
 # AcStallingsExponentCounterexample — the replacement measure is refuted
@@ -55,8 +59,8 @@ theorem exponentCounterexample_presentsTrivial :
   have hy0 : PresentedGroup.mk rels (exponentCounterexample 1) = 1 :=
     PresentedGroup.one_of_mem (Set.mem_range_self 1)
   have hy1 : y * (x * y * x⁻¹ * y⁻¹) = 1 := by
-    simpa [y, x, rels, exponentCounterexample, exponentCounterexampleR1,
-      PresentedGroup.of] using hy0
+    simp only [y, x]
+    exact hy0
   have hy : y = 1 := by
     simpa [hx] using hy1
   have hrange :

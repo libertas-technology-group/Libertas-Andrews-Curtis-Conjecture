@@ -1,5 +1,9 @@
-import AcInduction
-import AcEuclidGeneral
+module
+
+public import AcInduction
+public import AcEuclidGeneral
+
+@[expose] public section
 
 /-!
 # Final assembly from A8

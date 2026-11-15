@@ -1,6 +1,10 @@
-import Ak3
-import BranchC3
-import AcQuotient
+module
+
+public import Ak3
+public import BranchC3
+public import AcQuotient
+
+@[expose] public section
 
 /-!
 # AK(3) separation through the PSL quotient index
@@ -122,7 +126,7 @@ normal closure, and a subsingleton quotient forces every element into the
 normal closure. -/
 theorem normalClosure_range_ak3 :
     Subgroup.normalClosure (Set.range Ak3.ak3) = ⊤ := by
-  haveI : Subsingleton (PresentedGroup (Set.range Ak3.ak3)) := Ak3.ak3_presentsTrivial
+  have : Subsingleton (PresentedGroup (Set.range Ak3.ak3)) := Ak3.ak3_presentsTrivial
   rw [eq_top_iff]
   intro x _
   rw [← PresentedGroup.mk_eq_one_iff (rels := Set.range Ak3.ak3)]

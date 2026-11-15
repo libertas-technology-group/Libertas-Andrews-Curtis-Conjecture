@@ -1,5 +1,8 @@
-import Mathlib.GroupTheory.PresentedGroup
-import Mathlib.Data.Fin.Tuple.Basic
+module
+public import Mathlib.GroupTheory.PresentedGroup
+public import Mathlib.Data.Fin.Tuple.Basic
+
+@[expose] public section
 
 /-!
 # The ordinary and stable Andrews–Curtis conjectures

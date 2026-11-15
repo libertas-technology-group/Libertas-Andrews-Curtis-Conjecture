@@ -1,13 +1,17 @@
-import AC
-import AcProof
-import AcInvariant
-import Mathlib.GroupTheory.FreeGroup.Reduce
-import Mathlib.GroupTheory.FreeGroup.CyclicallyReduced
-import Mathlib.Algebra.Group.Nat.Even
-import Mathlib.Data.ZMod.Basic
-import Mathlib.Algebra.Ring.Parity
-import Mathlib.Tactic.FinCases
-import AcA8Reachability
+module
+
+public import AC
+public import AcProof
+public import AcInvariant
+public import Mathlib.GroupTheory.FreeGroup.Reduce
+public import Mathlib.GroupTheory.FreeGroup.CyclicallyReduced
+public import Mathlib.Algebra.Group.Nat.Even
+public import Mathlib.Data.ZMod.Basic
+public import Mathlib.Algebra.Ring.Parity
+public import Mathlib.Tactic.FinCases
+public import AcA8Reachability
+
+@[expose] public section
 
 /-!
 # AcA8TailMinimal — the rank-two commutator-tail interface
@@ -199,7 +203,7 @@ lemma expVec_sum_zmod_eq_length (w : Word 2) :
     (expVec w 0 : ZMod 2) + (expVec w 1 : ZMod 2) =
       (w.toWord.length : ZMod 2) := by
   induction w using FreeGroup.induction_on with
-  | C1 => simp
+  | one => simp
   | of i =>
       fin_cases i <;> simp [expVec, expHom, genVec]
   | inv_of i ih =>
@@ -385,9 +389,9 @@ lemma totalExcess_conj_lt (S : Relators 2) (i : Fin 2) (v : Word 2)
   · intro hlen hge2
     rcases hS with ⟨σ, _hσ, ε, hε⟩
     have hlen0 : (v * S 0 * v⁻¹).toWord.length < (S 0).toWord.length := by
-      convert hlen using 2
+      simpa using hlen
     have hge20 : 2 ≤ (S 0).toWord.length := by
-      convert hge2 using 2
+      simpa using hge2
     have hexp_i : expVec (v * S 0 * v⁻¹) = expVec (S 0) := expVec_conj
     have he_i : excessLength (v * S 0 * v⁻¹) =
         (v * S 0 * v⁻¹).toWord.length - 1 :=
@@ -405,9 +409,9 @@ lemma totalExcess_conj_lt (S : Relators 2) (i : Fin 2) (v : Word 2)
   · intro hlen hge2
     rcases hS with ⟨σ, _hσ, ε, hε⟩
     have hlen1 : (v * S 1 * v⁻¹).toWord.length < (S 1).toWord.length := by
-      convert hlen using 2
+      simpa using hlen
     have hge21 : 2 ≤ (S 1).toWord.length := by
-      convert hge2 using 2
+      simpa using hge2
     have hexp_i : expVec (v * S 1 * v⁻¹) = expVec (S 1) := expVec_conj
     have he_i : excessLength (v * S 1 * v⁻¹) =
         (v * S 1 * v⁻¹).toWord.length - 1 :=

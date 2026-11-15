@@ -1,10 +1,14 @@
-import AC
-import Mathlib.Algebra.Group.TypeTags.Basic
-import Mathlib.Data.Set.Image
-import Mathlib.LinearAlgebra.Span.Basic
-import Mathlib.LinearAlgebra.Quotient.Defs
-import Mathlib.LinearAlgebra.StdBasis
-import Mathlib.Tactic.Abel
+module
+
+public import AC
+public import Mathlib.Algebra.Group.TypeTags.Basic
+public import Mathlib.Data.Set.Image
+public import Mathlib.LinearAlgebra.Span.Basic
+public import Mathlib.LinearAlgebra.Quotient.Defs
+public import Mathlib.LinearAlgebra.StdBasis
+public import Mathlib.Tactic.Abel
+
+@[expose] public section
 
 /-!
 # Candidate invariants for the Andrews–Curtis relation
@@ -260,7 +264,9 @@ theorem expSpan_eq_top_of_presents {R : Relators n} (h : PresentsTrivialGroup R)
     rintro r ⟨j, rfl⟩
     have hcomp : (quoHom.comp (expHom n)) (R j) = FreeGroup.lift f (R j) :=
       FreeGroup.lift_unique (f := f) (quoHom.comp (expHom n))
-        (fun i => by simp [f, quoHom, expHom])
+        (fun i => by
+          show quoHom ((expHom n) (FreeGroup.of i)) = f i
+          simp [f, quoHom, expHom, Multiplicative.toAdd, Multiplicative.ofAdd])
     rw [← hcomp]
     show Multiplicative.ofAdd (Submodule.Quotient.mk (expVec (R j))) = 1
     have hzero : (Submodule.Quotient.mk (expVec (R j)) : (Fin n → ℤ) ⧸ expSpan R) = 0 := by
@@ -273,7 +279,7 @@ theorem expSpan_eq_top_of_presents {R : Relators n} (h : PresentsTrivialGroup R)
     PresentedGroup.toGroup (f := f) (rels := Set.range R) hkill
   have hgen : ∀ i : Fin n, genVec i ∈ expSpan R := by
     intro i
-    haveI : Subsingleton (PresentedGroup (Set.range R)) := h
+    have : Subsingleton (PresentedGroup (Set.range R)) := h
     have h1 : φ (PresentedGroup.of i) = 1 := by
       rw [show PresentedGroup.of i = (1 : PresentedGroup (Set.range R)) from
         Subsingleton.elim _ _]

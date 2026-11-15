@@ -1,4 +1,8 @@
-import AcStableMountain
+module
+
+public import AcStableMountain
+
+@[expose] public section
 
 /-!
 # AcStableMountainRankOne — the rank-one mountain subgoal

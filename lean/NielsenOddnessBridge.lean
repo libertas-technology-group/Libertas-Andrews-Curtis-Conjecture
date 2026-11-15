@@ -1,3 +1,5 @@
+module
+
 /-
 # NielsenOddnessBridge — the low-measure input with oddness discharged
 
@@ -14,9 +16,11 @@ imports both and is imported by neither.
 No `sorry`, `admit`, `axiom`, or `native_decide` occurs in this file.
 -/
 
-import NielsenSliceBridge
-import NielsenOddness
-import Mathlib.Tactic
+public import NielsenSliceBridge
+public import NielsenOddness
+public import Mathlib.Tactic
+
+@[expose] public section
 
 set_option autoImplicit false
 
